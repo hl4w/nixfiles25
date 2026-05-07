@@ -6,12 +6,8 @@
   # 只开启docker、podman其一
   virtualisation.docker = {
     enable = true;
-    # 配置国内镜像源
     daemon.settings = {
-      registry-mirrors = [
-        "https://docker.xuanyuan.me"
-      ];
-      dns = [ "223.5.5.5" "119.29.29.29" ];     # 国内DNS
+      dns = [ "223.5.5.5" ];     # 国内DNS
     };
 
     # 推荐：rootless 安全模式（可选）
@@ -57,7 +53,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    #virt-viewer # View Virtual Machines
+    virt-viewer # View Virtual Machines
     open-vm-tools   # 虚拟工具
     
     docker  docker-compose
