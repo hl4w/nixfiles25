@@ -1,0 +1,1 @@
+echo $live_version

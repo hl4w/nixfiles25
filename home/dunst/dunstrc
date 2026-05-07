@@ -1,0 +1,99 @@
+# -----------------------------------------------------
+# Dunst Config
+# Author: Silas Zhang (2026)
+# -----------------------------------------------------
+
+[global]
+    monitor = 0
+    follow = none
+
+    # 尺寸 & 位置
+    width = 320
+    height = (0, 350)
+    origin = top-center
+    offset = 0x28
+
+    scale = 0
+    notification_limit = 15
+
+    # 进度条
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 0
+    progress_bar_corner_radius = 4
+
+    # 外观
+    transparency = 20
+    corner_radius = 12
+    frame_width = 0
+    gap_size = 6
+
+    padding = 10
+    horizontal_padding = 12
+    text_icon_padding = 8
+    separator_height = 0
+
+    indicate_hidden = yes
+    sort = yes
+
+    # 文字
+    font = "Fira Sans Medium" 10
+    line_height = 1.3
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    ellipsize = end
+    ignore_newline = no
+
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    # 图标
+    enable_recursive_icon_lookup = true
+    icon_theme = "Papirus-Dark, Adwaita"
+    icon_position = left
+    min_icon_size = 26
+    max_icon_size = 64
+    icon_corner_radius = 6
+
+    # 历史
+    sticky_history = yes
+    history_length = 20
+
+    # 工具
+    dmenu = /usr/bin/dmenu
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+
+    # Wayland
+    force_xwayland = false
+
+    # 鼠标按键
+    mouse_left_click = close_current
+    mouse_middle_click = close_all
+    mouse_right_click = context
+
+[experimental]
+    per_monitor_dpi = false
+
+# 低优先级通知
+[urgency_low]
+    background = "#0a0a0acc"
+    foreground = "#8a8a8a"
+    timeout = 5
+
+# 普通通知
+[urgency_normal]
+    background = "#0a0a0af0"
+    foreground = "#f0f0f0"
+    timeout = 7
+
+# 紧急通知
+[urgency_critical]
+    background = "#290f0ff0"
+    foreground = "#ff6b6b"
+    timeout = 12

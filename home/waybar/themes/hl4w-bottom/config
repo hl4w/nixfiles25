@@ -1,0 +1,42 @@
+// # Author: Silas Zhang (2026)
+// # -----------------------------------------------------
+//
+{
+    "position": "bottom",
+    "margin-top": 0,
+    "margin-bottom": 14,
+    "layer": "top",
+    "margin-left": 0,
+    "margin-right": 0,
+    "spacing": 0,
+
+    "include": ["$HOME/.config/waybar/modules.json"],
+
+    "modules-left": [
+        "custom/appmenu",
+        "group/links",
+        "group/settings",
+        "group/quicklinks",
+        "hyprland/window"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces",
+        "custom/empty"
+    ],
+
+    "modules-right": [
+        "custom/updates",
+        "pulseaudio",
+        "bluetooth",
+        "battery",
+        "network",
+        "group/hardware",
+        "custom/cliphist",
+        "idle_inhibitor",
+        "tray",
+        "custom/exit",
+        "custom/hl4w-welcome",
+        "clock"
+    ]
+}

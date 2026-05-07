@@ -1,0 +1,295 @@
+// # -----------------------------------------------------
+// # Waybar modules  Config
+// # Author: Silas Zhang (2026)
+// # ----------------------------------------------------- 
+//
+
+{
+    // Workspaces
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    // Taskbar
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "foot"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        },
+        "rewrite": {
+            "Firefox Web Browser": "Firefox",
+            "Foot Server": "Terminal"
+        }
+    },
+
+    // Hyprland Window
+    "hyprland/window": {
+        "rewrite": {
+            "(.*) - Brave": "$1",
+            "(.*) - Chromium": "$1",
+            "(.*) - Brave Search": "$1",
+            "(.*) - Outlook": "$1",
+            "(.*) Microsoft Teams": "$1"
+        },
+        "separate-outputs": true
+    },
+
+    // Empty Placeholder
+    "custom/empty": {
+        "format": ""
+    },
+
+    // Cliphist
+    "custom/cliphist": {
+        "format": "",
+        "on-click": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh",
+        "on-click-right": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh w",
+        "tooltip": false
+    },
+
+    // Wallpaper Switcher
+    "custom/wallpaper": {
+        "format": "",
+        "on-click": "$HOME/.config/hypr/scripts/wallpaper.sh select",
+        "on-click-right": "$HOME/.config/hypr/scripts/wallpaper.sh",
+        "tooltip": false
+    },
+
+    // Waybar Theme Switcher
+    "custom/waybarthemes": {
+        "format": "",
+        "on-click": "$HOME/.config/waybar/themeswitcher.sh",
+        "tooltip": false
+    },
+
+    // Keybindings Help
+    "custom/keybindings": {
+        "format": "",
+        "on-click": "$HOME/.config/hypr/scripts/keybindings.sh",
+        "tooltip": false
+    },
+
+    // Filemanager Launcher
+    "custom/filemanager": {
+        "format": "",
+        "on-click": "$HOME/.config/settings/filemanager.sh",
+        "tooltip": false
+    },
+
+    // Browser Launcher
+    "custom/browser": {
+        "format": "",
+        "on-click": "$HOME/.config/settings/browser.sh",
+        "tooltip": false
+    },
+
+    // Calculator
+    "custom/calculator": {
+        "format": "",
+        "on-click": "qalculate-qt",
+        "tooltip": false
+    },
+
+    // Rofi Application Menu (Text)
+    "custom/appmenu": {
+        "format": "Apps",
+        "on-click": "sleep 0.2; rofi -show drun -replace",
+        "on-click-right": "$HOME/.config/hypr/scripts/keybindings.sh",
+        "tooltip": false
+    },
+
+    // Rofi Application Menu (Icon)
+    "custom/appmenuicon": {
+        "format": "",
+        "on-click": "rofi -show drun -replace",
+        "on-click-right": "$HOME/.config/hypr/scripts/keybindings.sh",
+        "tooltip": false
+    },
+
+    // Power Menu
+    "custom/exit": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    // Keyboard State (Num/Caps Lock)
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    // System Tray
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    // Clock
+    "clock": {
+        "format": "{:%H:%M %a}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    // System Info Group Label
+    "custom/system": {
+        "format": "",
+        "tooltip": false
+    },
+
+    // CPU Usage
+    "cpu": {
+        "format": "/ C {usage}% ",
+        "on-click": "foot -e btop"
+    },
+
+    // Memory Usage
+    "memory": {
+        "format": "/ M {}% ",
+        "on-click": "foot -e btop"
+    },
+
+    // Disk Usage
+    "disk": {
+        "interval": 30,
+        "format": "D {percentage_used}% ",
+        "path": "/",
+        "on-click": "foot -e btop"
+    },
+
+    // Keyboard Layout
+    "hyprland/language": {
+        "format": "/ K {short}"
+    },
+
+    // Hardware Info Group
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/system",
+            "disk",
+            "cpu",
+            "memory",
+            "hyprland/language"
+        ]
+    },
+
+    // Settings Group
+    "group/settings": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/waybarthemes",
+            "custom/wallpaper"
+        ]
+    },
+
+    // Network
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "   {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": " {ifname} via {gwaddri}",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click": "$HOME/.config/settings/networkmanager.sh"
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    // PulseAudio
+    "pulseaudio": {
+        "format": "{icon}   {volume}%",
+        "format-bluetooth": "{volume}%  {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol-qt"
+    },
+
+    // Bluetooth
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "",
+        "format-off": "",
+        "interval": 30,
+        "on-click": "bluedevil-wizard",
+        "format-no-controller": ""
+    },
+
+    // User Name
+    "user": {
+        "format": "{user}",
+        "interval": 60,
+        "icon": false
+    },
+
+    // Idle Inhibitor (Sleep Blocker)
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip": true,
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "on-click-right": "hyprlock"
+    }
+}
