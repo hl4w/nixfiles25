@@ -94,6 +94,4 @@
     enableZshIntegration = true;
   };
 
-
-
 }
