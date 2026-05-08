@@ -14,12 +14,7 @@
   # Plymouth 开机画面
   boot.plymouth = {
     enable = true;
-    theme = "rings";
-    themePackages = with pkgs; [
-      (adi1090x-plymouth-themes.override {
-        selected_themes = [ "rings" "circuit" ];
-      })
-    ];
+    theme = "nixos-breeze";
     #logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
   };
   boot.kernelParams = [
