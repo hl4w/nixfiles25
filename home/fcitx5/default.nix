@@ -18,5 +18,9 @@
     };
   };
 
+  home.files.".local/share/fcitx5/rime" = {
+    source = "oh-my-rime";
+    recursive = true;
+  };
 
 }
