@@ -6,7 +6,7 @@
     # 升级模式：boot 更安全（仅下载更新，下次开机生效，避免运行中系统变更）
     operation = "boot";
     # Flake配置路径（与你的flake.nix位置一致）
-    flake = "~/silas-nixos-config";
+    flake = "~/nixfiles";
     # 升级参数：更新nixpkgs、提交锁文件、静默执行
     flags = [
       "--update-input" "nixpkgs"
