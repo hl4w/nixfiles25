@@ -1,6 +1,4 @@
 
-
-
 # HL4W - Nixfiles for Hyprland
 
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
