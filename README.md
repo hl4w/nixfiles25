@@ -1,9 +1,9 @@
 
 
 
-# Silas's Nix Configuration
+# HL4W - Nixfiles for Hyprland
 
-This repository contains the NixOS and Home Manager configuration files that build and manage my personal systems. It uses Nix flakes for declarative, reproducible system deployments.
+An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
 ## Why Nix?
 
