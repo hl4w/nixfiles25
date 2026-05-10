@@ -5,6 +5,8 @@ An advanced configuration of Hyprland for NixOS based distributions. This reposi
 
 [![Screenshot](screenshots/v10/screenshot-1.png "Screenshot")](screenshots/v10/screenshot-1.png)
 
+![screenshot](screenshots/v10/screenshots-1.jpg)
+
 ## Why Nix?
 
 Nix is a powerful package manager and configuration management tool that enables:
