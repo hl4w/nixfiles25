@@ -21,6 +21,7 @@
       fcitx5
       kdePackages.fcitx5-qt
       kdePackages.fcitx5-configtool
+      kdePackages.fcitx5-chinese-addons
 
       fcitx5-rime
       fcitx5-nord                       
