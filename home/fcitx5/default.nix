@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  /*
   programs.fcitx5 = {
     enable = true;
     rime = {
@@ -17,9 +18,12 @@
     };
   };
 
+
   home.files.".local/share/fcitx5/rime" = {
     source = "oh-my-rime";
     recursive = true;
   };
+*/
+
 
 }

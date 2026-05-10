@@ -1,14 +1,14 @@
 {  config, pkgs,  lib, ... }: 
 
 {
-  /*
+
   home.activation.installNvim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p $HOME/.config/nvim
     cp -rf ${../nvim}/init.vim $HOME/.config/nvim/init.vim
     find $HOME/.config/nvim -type f -name "*.vim" -exec chmod 644 {} \;
   '';
 
-  */
+  /*
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -22,7 +22,6 @@
     owner = "LazyVim";
     repo = "starter";
     rev = "main";
-    sha256 = pkgs.lib.fakeSha256;
   };
-
+  */
 }

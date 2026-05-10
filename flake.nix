@@ -9,7 +9,7 @@
       url = "https://gitee.com/silaszk/home-manager/repository/archive/release-25.11.zip";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+/*
     noctalia = {
       #url = "github:noctalia-dev/noctalia-shell";
       url = "https://gitee.com/silaszk/noctalia-shell/repository/archive/main.zip";
@@ -18,12 +18,13 @@
 
     noctalia-qs = {
       #url = "github:noctalia-dev/noctalia-shell";
-      url = "https://gitee.com/silaszk/noctalia-qs/repository/archive/master.zip";
+      url = "https://gitenix e.com/silaszk/noctalia-qs/repository/archive/master.zip";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+*/
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-qs,  ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,  ... }@inputs:
     let
       username = "silas";
       hostname = "nixos";

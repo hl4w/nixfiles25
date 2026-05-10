@@ -12,7 +12,7 @@
     ../modules/chinese.nix
     ../modules/ai-robot.nix
     #../modules/auto-upgrade.nix
-    ../modules/virtualization.nix
+    #../modules/virtualization.nix
     ../modules/hyprland.nix
   ];
 
@@ -35,7 +35,7 @@
     ];
 
     # 增大下载缓存，防止大文件下载中断 (500MB)
-    download-buffer-size = 524288000;
+    #download-buffer-size = 524288000;
     connect-timeout = 5;
     fallback = true;
     

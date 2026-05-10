@@ -14,7 +14,7 @@
   # Plymouth 开机画面
   boot.plymouth = {
     enable = true;
-    theme = "nixos-breeze";
+    theme = "bgrt";
     #logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
   };
   boot.kernelParams = [
