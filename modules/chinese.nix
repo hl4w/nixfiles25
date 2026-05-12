@@ -27,9 +27,7 @@
       fcitx5-nord                       
       fcitx5-pinyin-zhwiki             
       fcitx5-lua 
-      librime
-      rime-ice
-      rime-data     
+      librime   
     ];
     fcitx5.waylandFrontend = true;
   };
