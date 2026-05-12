@@ -57,7 +57,7 @@
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";          # 禁止 root 直接登录（更安全）
-    settings.PasswordAuthentication = false;  # 只允许密钥登录，禁用密码
+    settings.PasswordAuthentication = true;  # 只允许密钥登录，禁用密码
     openFirewall = true;                      # 自动在防火墙放通 22 端口
   };
 
