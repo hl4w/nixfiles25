@@ -1,16 +1,17 @@
 { config, pkgs, lib, ... }:
 
 let
+
   oh-my-rime = pkgs.fetchzip {
     url = "https://cnb.cool/Mintimate/rime/oh-my-rime/-/releases/download/latest/oh-my-rime.zip";
     sha256 = "sha256-cSyGQhGJh5wTnArN1hmyaFJuFNILEc/7hcBvd2APfyQ=";
     stripRoot = false;
   };
 
-  fcitx-catppucin = pkgs.fetchzip {
-    url = "https://mirror.ghproxy.com/https://github.com/catppuccin/fcitx5/archive/refs/heads/main.zip";
-    sha256 = "sha256-hHgDWbFjLgN1hK+cHGZ8iJ2JzJ2wCwGJk9L6H8RjS8Y=";
-    stripRoot = false;
+  fcitx5-catppuccin =pkgs.fetchzip {
+    url = "https://gitee.com/hl4w/fcitx5-catppuccin/repository/archive/main.zip";
+    sha256 = "sha256-ss0kW+ulvMhxeZKBrjQ7E5Cya+02eJrGsE4OLEkqKks=";
+    stripRoot = true;
   };
 
 in {
@@ -44,23 +45,44 @@ in {
     patch:
       menu:
         page_size: 6
+
       schema_list:
         - schema: rime_mint
-        - schema: rime_mint_fluency
+        - schema: rime_mint_flypy
   '';
 
+  home.activation.linkCatppuccinConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run mkdir -p $HOME/.local/share/fcitx5/themes
+    TARGET_DIR="$HOME/.local/share/fcitx5/themes"
+    #BACKUP_DIR="$TARGET_DIR.backup.$(date +%Y%m%d_%H%M%S)"
 
-  # --------------------------
-  # 加载 Catppuccin 主题
-  # --------------------------
-  home.sessionVariables.FCITX5_ADDITIONAL_THEMES = "${catppuccin-fcitx5}/themes";
+    # 直接复制 Nix 里的 oh-my-rime 到目标目录（不再用 unzip）
+    run cp -rf ${fcitx5-catppuccin}/src/* "$TARGET_DIR/"
+    run chmod -R u+rwX "$TARGET_DIR"
+    echo "Fcitx5 Catppuccin copied to $TARGET_DIR"
+  '';
 
   # --------------------------
   # 设置默认主题（mocha 深色）
   # --------------------------
-  xdg.configFile."fcitx5/conf/ui.conf".text = ''
-    [General]
-    Theme=catppuccin-mocha
-  ''; 
+  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
+    Vertical Candidate List=False
+    WheelForPaging=True
+    Font="思源黑体 12"
+    MenuFont="Sans 10"
+    TrayFont="Sans Bold 10"
+    TrayOutlineColor=#000000
+    TrayTextColor=#ffffff
+    PreferTextIcon=False
+    ShowLayoutNameInIcon=True
+    UseInputMethodLanguageToDisplayText=True
+    Theme=catppuccin-mocha-lavender
+    DarkTheme=catppuccin-macchiato-blue
+    UseDarkTheme=False
+    UseAccentColor=True
+    PerScreenDPI=False
+    ForceWaylandDPI=0
+    EnableFractionalScale=True
+  '';
 
 }
