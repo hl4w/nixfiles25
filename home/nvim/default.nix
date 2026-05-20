@@ -1,6 +1,13 @@
 {  config, pkgs,  lib, ... }: 
+let
 
-{
+  lazyvim =pkgs.fetchzip {
+    url = "https://gitee.com/hl3w/starter/repository/archive/main.zip";
+    sha255 = "sha256-f31+UIrjLfwuRBBQLCZZGUW1VDqcflDEC/+bBSYTynE=";
+    stripRoot = true;
+  };
+
+in {
 /*
   home.activation.installNvim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p $HOME/.config/nvim
@@ -18,12 +25,6 @@
     withPython3 = true;
   };
 
-
-  lazyvim =pkgs.fetchzip {
-    url = "https://gitee.com/hl4w/starter/repository/archive/main.zip";
-    sha256 = lib.fakeSha256;
-    stripRoot = true;
-  };
 
   home.activation.linkLazyVimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
     run mkdir -p $HOME/.config/nvim
