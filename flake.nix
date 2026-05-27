@@ -6,13 +6,13 @@
     nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixos-25.11/nixexprs.tar.xz";
     home-manager = {
       #url = "github:nix-community/home-manager/release-25.11";
-      url = "https://gitee.com/silaszk/home-manager/repository/archive/release-25.11.zip";
+      url = "https://gitee.com/hl4w/home-manager/repository/archive/release-25.11.zip";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     noctalia = {
       #url = "github:noctalia-dev/noctalia-shell";
-      url = "https://gitee.com/silaszk/noctalia-shell/repository/archive/main.zip";
+      url = "https://gitee.com/hl4w/noctalia-shell/repository/archive/main.zip";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
