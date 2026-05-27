@@ -27,6 +27,12 @@
       config.common.default = [ "hyprland" ];
   };
   
+  nixpkgs.config = {
+    qt5.enable = true;
+    qt5.platformTheme.name = "qt5ct";
+    qt6.enable = true;
+    qt6.platformTheme = "qt6ct";
+  };
   # 杀毒软件 ClamAV
   services.clamav = {
     daemon.enable = true;     # 必须开！
@@ -49,6 +55,10 @@
     # 强制 Wayland 渲染（避免部分应用 fallback 到 X11）
     #GDK_BACKEND = "wayland";
     QT_QPA_PLATFORM = "wayland";
+
+    GTK_THEME = "catppuccin-mocha";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    QT_SCALE_OVERRIDE = "kvantum";
 
     EDITOR = "nvim";  # 默认编译器为neovim
   };
@@ -89,6 +99,20 @@
     wl-screenrec  wl-clipboard  wl-clip-persist cliphist
 
     sddm-sugar-dark
+
+      # GTK 主题
+    catppuccin-gtk
+    flat-remix-gtk
+    adwaita-icon-theme
+    papirus-icon-theme
+    kdePackages.qt6ct
+    libsForQt5.qt5ct
+    bibata-cursors
+    catppuccin-kvantum
+    nwg-look
+
+    libsForQt5.qtstyleplugin-kvantum
+    kdePackages.qtstyleplugin-kvantum
   ]; 
 
 }

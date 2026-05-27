@@ -23,6 +23,7 @@
     ../home/nvim
     ../home/dunst
     ../home/wlogout
+    ../home/gtkqt
 
     ../home/shell
     
