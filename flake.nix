@@ -1,36 +1,56 @@
 {
   description = "Silas Zhang's NixOS 25.11 Flake (Kui & Qingyu)";
 
+  # Nix 配置选项
+  nixConfig = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://cache.nixos.org/"
+    ];
+    trusted-substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+    ];
+  };
+
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs.url = "https://mirrors.ustc.edu.cn/nix-channels/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+
     home-manager = {
-      #url = "github:nix-community/home-manager/release-25.11";
-      url = "https://gitee.com/hl4w/home-manager/repository/archive/release-25.11.zip";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     noctalia = {
-      #url = "github:noctalia-dev/noctalia-shell";
-      url = "https://gitee.com/hl4w/noctalia-shell/repository/archive/main.zip";
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland-contrib = {
+      url = "github:hyprwm/hyprland-contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, noctalia, hyprland-contrib, ... }@inputs:
     let
+      system = "x86_64-linux";
       username = "silas";
       hostname = "nixos";
       specialArgs = { inherit username hostname; };
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
-        system = "x86_64-linux";
+        inherit system specialArgs;
         modules = [
           ./hosts
           ./users/nixos.nix
-
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -40,5 +60,8 @@
           }
         ];
       };
+
+      # 格式化输出
+      formatter."${system}" = pkgs.nixpkgs-fmt;
     };
 }
