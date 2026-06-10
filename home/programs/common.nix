@@ -1,97 +1,167 @@
+# =============================================================================
+# Home Manager 用户软件包配置
+# =============================================================================
+# 通过 Home Manager 安装的用户级软件包
+# 这些软件包会被安装到用户目录下，不需要 root 权限
+# =============================================================================
+
 # ~/nix-config/home.nix
-{ config, pkgs, inputs,  ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  # ============================================================================
+  # 用户软件包列表
+  # ============================================================================
   home.packages = with pkgs; [
-      # ==============================
+    # ==========================================================================
     # 开发工具 & 编程环境
-    # ==============================
-    vscodium  wtype  emacs-nox devenv
- 
-    kdePackages.kate
-    #obsidian
+    # ==========================================================================
+    # -------------------- 代码编辑器 --------------------
+    vscodium          # VSCode 的开源版本（去除微软遥测）
+    wtype             # Wayland 输入工具（用于某些应用）
+    emacs-nox         # Emacs 无图形界面版本
 
-    lazygit git-ignore  gitleaks
+    # -------------------- 开发环境 --------------------
+    devenv            # Nix-based 开发环境管理器
 
-    hugo  glow  ripgrep pandoc  highlight graphviz
+    # -------------------- IDE --------------------
+    kdePackages.kate  # KDE 高级文本编辑器
 
-    # ==============================
+    # -------------------- 版本控制 --------------------
+    lazygit           # TUI Git 客户端
+    git-ignore        # Git .gitignore 生成工具
+    gitleaks          # Git 敏感信息扫描工具
+
+    # -------------------- 文档工具 --------------------
+    hugo              # 静态网站生成器
+    glow              # Markdown 渲染器（终端）
+    ripgrep           # 快速递归搜索工具（grep 替代）
+    pandoc            # 文档格式转换器
+    highlight         # 代码高亮工具
+    graphviz          # 图形可视化工具
+
+    # ==========================================================================
     # 终端 & Shell 工具
-    # ==============================
-    oh-my-zsh zsh-completions zsh-autocomplete  zsh-powerlevel10k zsh-clipboard zsh-syntax-highlighting
+    # ==========================================================================
+    # -------------------- Zsh 配置 --------------------
+    oh-my-zsh              # Zsh 框架（提供主题和插件）
+    zsh-completions        # Zsh 补全增强
+    zsh-autocomplete       # Zsh 自动补全
+    zsh-powerlevel10k      # Powerlevel10k 主题
+    zsh-clipboard          # Zsh 剪贴板支持
+    zsh-syntax-highlighting # 语法高亮
 
-    foot  tmux  starship
+    # -------------------- 终端模拟器 --------------------
+    foot                   # Wayland 原生终端模拟器
+    tmux                   # 终端复用器
+    starship               # 跨平台提示符（prompt）
 
-    fastfetch btop  bat eza fzf figlet  gum
+    # -------------------- 系统工具 --------------------
+    fastfetch              # Neofetch 替代品（更快）
+    btop                   # 系统监视器（htop 替代）
+    bat                    # Cat 替代品（带语法高亮）
+    eza                    # LS 替代品（更美观的 ls）
+    fzf                    # 模糊搜索工具
+    figlet                 # ASCII 艺术字生成
+    gum                    # Chisel 开发的 Git 工具
 
-    # ==============================
+    # ==========================================================================
     # 文件管理 & 压缩 & 预览
-    # ==============================
-    lf  ranger  yazi
+    # ==========================================================================
+    # -------------------- 文件管理器 --------------------
+    lf                     # Go 编写的终端文件管理器
+    ranger                 # VIM 风格的终端文件管理器
+    yazi                   # 快速终端文件管理器（Rust）
 
-    kdePackages.ark
-    kdePackages.dolphin
-    kdePackages.dolphin-plugins
-    kdePackages.kio-extras
-    kdePackages.kio-fuse
-    kdePackages.kimageformats
-    kdePackages.kdegraphics-thumbnailers
+    # -------------------- KDE 文件工具 --------------------
+    kdePackages.ark                # KDE 压缩文件管理器
+    kdePackages.dolphin            # KDE 文件管理器
+    kdePackages.dolphin-plugins   # Dolphin 插件
+    kdePackages.kio-extras         # KDE I/O 扩展
+    kdePackages.kio-fuse           # KDE FUSE 支持
+    kdePackages.kimageformats      # KDE 图片格式支持
+    kdePackages.kdegraphics-thumbnailers # 图片缩略图
 
-    nemo  nemo-python nemo-preview  nemo-fileroller nemo-seahorse
+    # -------------------- GNOME 文件工具 --------------------
+    nemo                   # Cinnamon 文件管理器
+    nemo-python            # Nemo Python 插件
+    nemo-preview          # Nemo 预览插件
+    nemo-fileroller        # Nemo 压缩支持
+    nemo-seahorse          # Nemo 加密支持
 
-    zip unzip unrar
-    qalculate-qt
+    # -------------------- 压缩工具 --------------------
+    zip unzip unrar        # 常见压缩格式支持
 
-    # ==============================
+    # -------------------- 计算器 --------------------
+    qalculate-qt          # 高级计算器（Qt GUI）
+
+    # ==========================================================================
     # 文档阅读 & 图片查看
-    # ==============================
-    kdePackages.okular
-    kdePackages.gwenview
+    # ==========================================================================
+    kdePackages.okular     # KDE 多功能文档查看器
+    kdePackages.gwenview   # KDE 图片查看器
 
-    # ==============================
+    # ==========================================================================
     # 多媒体 & 影音
-    # ==============================
-    mpv mpv-handler
-    vlc ffmpegthumbnailer
-    kdePackages.elisa
+    # ==========================================================================
+    mpv                   # 高性能视频播放器
+    mpv-handler           # MPV 协议处理器
+    vlc                   # VLC 媒体播放器
+    ffmpegthumbnailer     # 视频缩略图生成
+    kdePackages.elisa     # KDE 音乐播放器
 
-    # ==============================
+    # ==========================================================================
     # 远程 & 网络
-    # ==============================
-    kdePackages.krdc
-    mosh  impala  ethtool
+    # ==========================================================================
+    kdePackages.krdc      # KDE 远程桌面客户端
+    mosh                  # 移动 Shell（更稳定的 SSH）
+    impala                # 网络诊断工具
+    ethtool               # 网卡配置工具
 
-    # ==============================
+    # ==========================================================================
     # 云同步
-    # ==============================
-    nextcloud-client
+    # ==========================================================================
+    nextcloud-client      # Nextcloud 桌面客户端
 
-    # ==============================
+    # ==========================================================================
     # 系统工具 & 硬件 & 监控
-    # ==============================
-    brightnessctl
-    clamav
-    usbutils  pciutils  psi-notify  poweralertd
+    # ==========================================================================
+    brightnessctl         # 屏幕亮度控制
+    clamav                # 杀毒软件
+    usbutils              # USB 设备工具（lsusb）
+    pciutils              # PCI 设备工具（lspci）
+    psi-notify            # 电源状态通知
+    poweralertd           # 电源告警守护进程
 
-    # ==============================
+    # ==========================================================================
     # 主题 & 光标 & 图标 & Qt 支持
-    # ==============================
-    kdePackages.qtsvg
+    # ==========================================================================
+    kdePackages.qtsvg     # Qt SVG 支持
 
-    catppuccin-kvantum
-    catppuccin-cursors
-    bibata-cursors
+    # -------------------- 主题 --------------------
+    catppuccin-kvantum    # Catppuccin Kvantum 主题
+    catppuccin-cursors    # Catppuccin 光标主题
 
-    numix-icon-theme-circle
-    colloid-icon-theme
-    adwaita-icon-theme
-    papirus-icon-theme
+    # -------------------- 光标主题 --------------------
+    bibata-cursors        # Bibata 光标主题
+
+    # -------------------- 图标主题 --------------------
+    numix-icon-theme-circle   # Numix 圆形图标主题
+    colloid-icon-theme        # Colloid 图标主题
+    adwaita-icon-theme        # GNOME Adwaita 图标主题
+    papirus-icon-theme        # Papirus 图标主题
   ];
 
+  # ============================================================================
+  # Direnv 配置
+  # ============================================================================
+  # Direnv - 目录级环境变量管理器
+  # 自动根据当前目录加载/卸载环境变量
   programs.direnv = {
-    enable = true; #自动加载环境变量
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
+    enable = true;                    # 启用 Direnv
 
+    # Shell 集成
+    enableBashIntegration = true;    # Bash 集成
+    enableZshIntegration = true;     # Zsh 集成
+  };
 }

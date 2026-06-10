@@ -1,44 +1,101 @@
 { pkgs, hostname, ... }:
 
 {
+  # ============================================================================
+  # 蓝牙配置
+  # ============================================================================
   hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
+    enable = true;           # 启用蓝牙服务
+    powerOnBoot = false;     # 开机时不自动开启蓝牙（节省资源）
   };
 
+  # ============================================================================
+  # 网络配置
+  # ============================================================================
+  # 设置主机名
   networking.hostName = hostname;
+
+  # 启用 NetworkManager（图形化网络管理）
   networking.networkmanager.enable = true;
+
+  # 启用防火墙
   networking.firewall.enable = true;
 
+  # ============================================================================
+  # 打印服务
+  # ============================================================================
+  # 启用 CUPS 打印服务
   services.printing.enable = true;
+
+  # ============================================================================
+  # 电源管理
+  # ============================================================================
+  # Tuned - 系统调优守护进程（适用于服务器和高性能需求）
   services.tuned.enable = true;
+
+  # UPower - 电源管理守护进程（管理电池、电源等）
   services.upower.enable = true;
 
+  # ============================================================================
+  # 音频配置
+  # ============================================================================
+  # 禁用 PulseAudio（使用 PipeWire 替代）
   services.pulseaudio.enable = false;
+
+  # RTKit - 实时音频优先级管理
   security.rtkit.enable = true;
+
+  # PipeWire - 现代音视频服务器（替代 PulseAudio + JACK）
   services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
+    enable = true;           # 启用 PipeWire
+    alsa.enable = true;      # ALSA 兼容层
+    alsa.support32Bit = true; # 32 位应用支持
+    pulse.enable = true;     # PulseAudio 兼容层
+    wireplumber.enable = true; # PipeWire 会话管理器
   };
 
+  # ============================================================================
+  # 时间和时区
+  # ============================================================================
+  # 硬件时钟使用本地时间（非 UTC）
   time.hardwareClockInLocalTime = true;
+
+  # 设置时区为中国上海
   time.timeZone = "Asia/Shanghai";
 
+  # ============================================================================
+  # 图形驱动
+  # ============================================================================
+  # 启用图形加速支持
   hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+    enable = true;           # 启用图形驱动
+    enable32Bit = true;      # 支持 32 位应用
   };
 
+  # ============================================================================
+  # 文件系统
+  # ============================================================================
+  # GVfs - GNOME 虚拟文件系统（支持自动挂载 USB 等）
   services.gvfs.enable = true;
+
+  # ============================================================================
+  # 虚拟化
+  # ============================================================================
+  # VMware 客户机工具
   virtualisation.vmware.guest.enable = true;
 
+  # ============================================================================
+  # 系统软件包
+  # ============================================================================
   environment.systemPackages = with pkgs; [
+    # 蓝牙管理（KDE 集成）
     kdePackages.bluedevil
+
+    # 网络管理小程序（KDE 集成）
     kdePackages.plasma-nm
-    vulkan-loader
-    vulkan-tools
+
+    # Vulkan 图形 API 支持
+    vulkan-loader    # Vulkan 加载器
+    vulkan-tools     # Vulkan 诊断工具
   ];
 }

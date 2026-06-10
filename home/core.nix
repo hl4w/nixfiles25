@@ -1,26 +1,46 @@
-{ config, pkgs, lib, username,  ... }: 
+# =============================================================================
+# Home Manager 核心配置
+# =============================================================================
+# 这是 Home Manager 的入口文件，定义了基本的用户环境和配置
+# =============================================================================
+
+{ config, pkgs, lib, username, ... }:
 
 {
-    home = {
+  # ============================================================================
+  # 用户环境基础配置
+  # ============================================================================
+  home = {
+    # 继承用户名（从 flake.nix 传入）
     inherit username;
+
+    # 用户主目录路径
     homeDirectory = "/home/${username}";
 
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
+    # Home Manager 状态版本
+    # 这个值决定了配置的兼容性
+    # 当 Home Manager 发布不兼容的更新时会用到
+    # 通常不需要更改，除非遇到升级问题
     stateVersion = "25.11";
   };
 
-  # Let Home Manager install and manage itself.
+  # ============================================================================
+  # Home Manager 自管理
+  # ============================================================================
+  # 让 Home Manager 管理自身
+  # 这样可以使用 nix-channel 或 flake 更新 Home Manager
   programs.home-manager.enable = true;
 
+  # ============================================================================
+  # 用户环境激活脚本
+  # ============================================================================
+  # 在环境激活时执行的操作
   home.activation.installsh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    # 复制 .bashrc 到用户主目录
+    # 注意：这里的 ${../home}/.bashrc 指向项目中的 .bashrc 文件
     cp -rf ${../home}/.bashrc $HOME/
-    chmod 644  $HOME/.bashrc
+
+    # 设置正确的文件权限
+    chmod 644 $HOME/.bashrc
   '';
 }

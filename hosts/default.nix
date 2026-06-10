@@ -1,49 +1,130 @@
 { config, pkgs, inputs, lib, username, ... }:
 
 {
+  # ============================================================================
+  # 模块导入
+  # ============================================================================
+  # 导入所有必要的配置模块
   imports = [
-    ../modules/bootloader.nix
-    ../modules/hardware.nix
-    ./hardware-configuration.nix
-    ../modules/flatpak-module.nix
-    ../modules/gc.nix
-    ../modules/chinese.nix
-    ../modules/ai-robot.nix
-    # ../modules/auto-upgrade.nix
-    # ../modules/virtualization.nix
-    ../modules/hyprland.nix
+    # --------------------------------------------------------------------------
+    # 基础模块
+    # --------------------------------------------------------------------------
+    ../modules/bootloader.nix        # 启动引导配置
+    ../modules/hardware.nix         # 硬件驱动配置
+    ./hardware-configuration.nix    # 自动生成的硬件配置
+
+    # --------------------------------------------------------------------------
+    # 功能模块
+    # --------------------------------------------------------------------------
+    ../modules/flatpak-module.nix   # Flatpak 应用支持
+    ../modules/gc.nix               # 垃圾回收配置
+    ../modules/chinese.nix          # 中文环境配置（输入法、字体等）
+    ../modules/ai-robot.nix         # AI 机器人配置
+
+    # --------------------------------------------------------------------------
+    # 可选模块（已禁用）
+    # --------------------------------------------------------------------------
+    # ../modules/auto-upgrade.nix    # 自动更新模块
+    # ../modules/virtualization.nix  # 虚拟化支持（Docker、KVM等）
+
+    # --------------------------------------------------------------------------
+    # 桌面环境
+    # --------------------------------------------------------------------------
+    ../modules/hyprland.nix         # Hyprland Wayland 合成器
   ];
 
+  # ============================================================================
+  # Nix 包管理器配置
+  # ============================================================================
+  # 使用 Lix 作为 Nix 的替代实现（更好的性能）
   nix.package = pkgs.lix;
+
   nix.settings = {
+    # 网络连接超时时间（秒）
     connect-timeout = 5;
+
+    # 启用回退机制：当构建失败时尝试从其他来源获取
     fallback = true;
+
+    # 自动优化存储：启用文件去重和压缩以节省空间
     auto-optimise-store = true;
   };
 
+  # ============================================================================
+  # Shell 配置
+  # ============================================================================
+  # 启用 Zsh 作为默认 shell
   programs.zsh.enable = true;
 
+  # ============================================================================
+  # 用户配置
+  # ============================================================================
   users.users.${username} = {
+    # 标记为普通用户（非 root）
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "audio" "render" "libvirtd" "qemu" "kvm" ];
+
+    # 用户所属的额外组
+    # wheel      - sudo 权限
+    # networkmanager - 网络管理
+    # docker     - Docker 容器管理
+    # video      - 视频设备访问
+    # audio      - 音频设备访问
+    # render     - GPU 渲染
+    # libvirtd   - libvirt 虚拟化
+    # qemu/kvm   - QEMU/KVM 虚拟机
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "video"
+      "audio"
+      "render"
+      "libvirtd"
+      "qemu"
+      "kvm"
+    ];
   };
 
+  # ============================================================================
+  # SSH 服务配置
+  # ============================================================================
   services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "no";
-    settings.PasswordAuthentication = true;
-    openFirewall = true;
+    enable = true;                              # 启用 SSH 服务
+
+    # 安全设置
+    settings.PermitRootLogin = "no";           # 禁止 root 用户登录
+    settings.PasswordAuthentication = true;     # 允许密码认证（建议改为 false 使用密钥）
+
+    openFirewall = true;                        # 自动在防火墙开放 22 端口
   };
 
+  # ============================================================================
+  # 环境变量配置
+  # ============================================================================
   environment.sessionVariables = {
+    # Wayland 相关
+    # 使用 Wayland Ozone 平台（适用于 Electron 等应用）
     NIXOS_OZONE_WL = "1";
+
+    # Qt 应用使用 Wayland 平台
     QT_QPA_PLATFORM = "wayland";
+
+    # SDL 应用使用 Wayland 驱动
     SDL_VIDEODRIVER = "wayland";
   };
 
+  # ============================================================================
+  # Shell 命令别名
+  # ============================================================================
   environment.shellAliases = {
+    # PyTorch 开发环境快速启动
+    # 使用 Docker 运行最新的 PyTorch 开发版，支持 GPU
     "torch-dev" = "docker run -it --rm --gpus all -v ~/projects:/workspace pytorch/pytorch:latest";
   };
 
+  # ============================================================================
+  # 系统版本
+  # ============================================================================
+  # NixOS 配置版本，用于迁移和升级
   system.stateVersion = "25.11";
 }

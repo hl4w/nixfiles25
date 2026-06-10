@@ -1,76 +1,219 @@
 { config, pkgs, ... }:
 
 {
+  # ============================================================================
+  # X Server 配置
+  # ============================================================================
+  # 启用 X Server 服务（Hyprland 需要）
+  # 虽然是 Wayland 合成器，但仍需要 X Server 处理输入设备和 3D 加速
   services.xserver.enable = true;
 
+  # ============================================================================
+  # 显示管理器 (SDDM) 配置
+  # ============================================================================
+  # SDDM - Simple Desktop Display Manager，用于登录界面
   services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "sugar-dark";
-    extraPackages = [ pkgs.sddm-sugar-dark ];
+    enable = true;                              # 启用 SDDM
+    wayland.enable = true;                     # 启用 Wayland 后端
+    theme = "sugar-dark";                       # 使用 sugar-dark 主题
+    extraPackages = [ pkgs.sddm-sugar-dark ];   # 主题包
   };
 
+  # 显示管理器会话包列表
   services.displayManager.sessionPackages = with pkgs; [
-    hyprland
+    hyprland  # Hyprland Wayland 合成器
   ];
 
+  # ============================================================================
+  # Hyprland 配置
+  # ============================================================================
   programs.hyprland = {
-    enable = true;
+    enable = true;             # 启用 Hyprland
+
+    # XWayland 支持
+    # XWayland 允许运行 X11 应用在 Wayland 上
+    # 已禁用以获得更纯粹的 Wayland 体验
     xwayland.enable = false;
   };
 
+  # ============================================================================
+  # XDG 门户配置
+  # ============================================================================
+  # XDG 门户为 Flatpak 和 Snap 等沙盒应用提供系统级接口
   xdg.portal = {
-    enable = true;
-    config.common.default = [ "hyprland" ];
+    enable = true;                            # 启用 XDG 门户
+    config.common.default = [ "hyprland" ];   # 默认使用 Hyprland
   };
 
+  # ============================================================================
+  # Qt 主题配置
+  # ============================================================================
+  # 配置 Qt5 和 Qt6 应用程序的外观和主题
   nixpkgs.config = {
-    qt5.enable = true;
-    qt5.platformTheme.name = "qt5ct";
-    qt6.enable = true;
-    qt6.platformTheme = "qt6ct";
+    # Qt5 设置
+    qt5.enable = true;                           # 启用 Qt5 支持
+    qt5.platformTheme.name = "qt5ct";           # 使用 Qt5 配置工具
+
+    # Qt6 设置
+    qt6.enable = true;                           # 启用 Qt6 支持
+    qt6.platformTheme = "qt6ct";                # 使用 Qt6 配置工具
   };
 
+  # ============================================================================
+  # ClamAV 杀毒软件配置
+  # ============================================================================
+  # ClamAV - 开源杀毒引擎
   services.clamav = {
+    # ClamAV 守护进程 - 实时扫描
     daemon.enable = true;
+    # 病毒库自动更新
     updater.enable = true;
+
+    # 定时扫描任务
     scanner = {
-      enable = true;
-      interval = "weekly *-*-* 07:00:00";
-      scanDirectories = [ "/home" "/etc" "/usr" ];
+      enable = true;                                     # 启用定时扫描
+      interval = "weekly *-*-* 07:00:00";               # 每周日凌晨 7 点执行
+      scanDirectories = [ "/home" "/etc" "/usr" ];       # 扫描目录
     };
   };
 
+  # ============================================================================
+  # 环境变量配置
+  # ============================================================================
   environment.variables = {
+    # -------------------- Wayland/DPI 设置 --------------------
+    # 鼠标/输入设备 DPI（96 = 100%，120 = 125%，144 = 150%）
     WLR_DPI = "96";
-    QT_SCALE_FACTOR = "1";
-    GTK_SCALE = "1";
+
+    # -------------------- Qt/GTK 缩放设置 --------------------
+    QT_SCALE_FACTOR = "1";    # Qt 应用缩放因子
+    GTK_SCALE = "1";         # GTK 应用缩放因子
+
+    # -------------------- 平台设置 --------------------
+    # 强制 Qt 应用使用 Wayland 平台
     QT_QPA_PLATFORM = "wayland";
+
+    # -------------------- 外观主题 --------------------
+    # GTK 主题（Catppuccin Mocha - 暗色主题）
     GTK_THEME = "catppuccin-mocha";
+    # Qt 主题配置工具
     QT_QPA_PLATFORMTHEME = "qt5ct";
+    # Qt 缩放覆盖（使用 Kvantum 主题引擎）
     QT_SCALE_OVERRIDE = "kvantum";
+
+    # -------------------- 编辑器 --------------------
+    # 默认编辑器设为 Neovim
     EDITOR = "nvim";
   };
 
+  # ============================================================================
+  # 会话级环境变量
+  # ============================================================================
+  # 这些变量在用户登录时自动设置
   environment.sessionVariables = {
+    # 终端类型（256 色支持）
     TERM = "xterm-256color";
+
+    # 启用真彩色支持（24 位颜色）
     COLORTERM = "truecolor";
   };
 
+  # ============================================================================
+  # Hyprland 锁定和空闲服务
+  # ============================================================================
+  # hyprlock - Hyprland 屏幕锁定工具
   programs.hyprlock.enable = true;
+  # hypridle - 检测空闲状态，可触发自动锁定
   services.hypridle.enable = true;
 
+  # ============================================================================
+  # 系统软件包
+  # ============================================================================
+  # 通过 NixOS 安装的系统级软件包
   environment.systemPackages = with pkgs; [
-    wget curl git neovim zsh
-    xdg-utils xdg-user-dirs xdg-desktop-portal
-    xdg-desktop-portal-hyprland kdePackages.xdg-desktop-portal-kde
-    pyprland hyprpicker hyprcursor hyprlock hypridle hyprpaper
-    hyprsunset hyprpolkitagent wlrctl waybar rofi wlogout
-    mako dunst wired grim slurp swappy imagemagick ksnip swww
-    ffmpeg_6-full wl-screenrec wl-clipboard wl-clip-persist cliphist
-    sddm-sugar-dark catppuccin-gtk flat-remix-gtk adwaita-icon-theme
-    papirus-icon-theme kdePackages.qt6ct libsForQt5.qt5ct bibata-cursors
-    catppuccin-kvantum nwg-look libsForQt5.qtstyleplugin-kvantum
-    kdePackages.qtstyleplugin-kvantum
+    # --------------------------------------------------------------------------
+    # 基础工具
+    # --------------------------------------------------------------------------
+    wget curl git neovim zsh           # 下载、HTTP、版本控制、编辑器、Shell
+
+    # --------------------------------------------------------------------------
+    # XDG/桌面集成
+    # --------------------------------------------------------------------------
+    xdg-utils xdg-user-dirs           # XDG 标准工具、用户目录
+    xdg-desktop-portal                # 桌面门户（文件选择等）
+    xdg-desktop-portal-hyprland       # Hyprland 专用门户后端
+    kdePackages.xdg-desktop-portal-kde # KDE 门户后端
+
+    # --------------------------------------------------------------------------
+    # Hyprland 相关工具
+    # --------------------------------------------------------------------------
+    pyprland          # Hyprland Python 插件管理器
+    hyprpicker        # 屏幕取色工具
+    hyprcursor        # 游标主题管理
+    hyprlock          # 屏幕锁定
+    hypridle          # 空闲检测
+    hyprpaper         # 壁纸管理
+    hyprsunset        # 蓝光过滤（护眼）
+    hyprpolkitagent   # Polkit 认证代理
+    wlrctl            # Wayland 区域/设备控制工具
+
+    # --------------------------------------------------------------------------
+    # 状态栏和启动器
+    # --------------------------------------------------------------------------
+    waybar             # Hyprland 状态栏
+    rofi               # 应用启动器/窗口切换器
+    wlogout            # 注销菜单
+
+    # --------------------------------------------------------------------------
+    # 通知系统
+    # --------------------------------------------------------------------------
+    mako dunst wired   # 通知守护进程
+
+    # --------------------------------------------------------------------------
+    # 截图和图像处理
+    # --------------------------------------------------------------------------
+    grim               # Wayland 截图工具
+    slurp              # 区域选择工具
+    swappy             # 截图标注工具
+    imagemagick        # 图像处理（包含 convert/magick 命令）
+    ksnip              # 截图工具
+    swww               # 动态壁纸工具
+
+    # --------------------------------------------------------------------------
+    # 多媒体
+    # --------------------------------------------------------------------------
+    ffmpeg_6-full      # 音视频处理（完整版）
+    wl-screenrec       # Wayland 屏幕录制
+    wl-clipboard       # Wayland 剪贴板
+    wl-clip-persist    # 剪贴板持久化
+    cliphist           # 剪贴板历史
+
+    # --------------------------------------------------------------------------
+    # 显示管理器主题
+    # --------------------------------------------------------------------------
+    sddm-sugar-dark    # SDDM 登录主题
+
+    # --------------------------------------------------------------------------
+    # GTK/Qt 主题
+    # --------------------------------------------------------------------------
+    catppuccin-gtk     # Catppuccin GTK 主题
+    flat-remix-gtk     # Flat Remix GTK 主题
+    adwaita-icon-theme  # GNOME Adwaita 图标主题
+    papirus-icon-theme  # Papirus 图标主题
+    kdePackages.qt6ct  # Qt6 配置工具
+    libsForQt5.qt5ct   # Qt5 配置工具
+
+    # --------------------------------------------------------------------------
+    # 光标主题
+    # --------------------------------------------------------------------------
+    bibata-cursors     # Bibata 光标主题
+
+    # --------------------------------------------------------------------------
+    # Kvantum 主题（Qt 主题引擎）
+    # --------------------------------------------------------------------------
+    catppuccin-kvantum        # Catppuccin Kvantum 主题
+    nwg-look                   # GTK 主题设置工具
+    libsForQt5.qtstyleplugin-kvantum   # Qt5 Kvantum 插件
+    kdePackages.qtstyleplugin-kvantum  # Qt6 Kvantum 插件
   ];
 }

@@ -1,67 +1,160 @@
 { config, pkgs, ... }:
 
 {
+  # ============================================================================
+  # 国际化配置 (i18n)
+  # ============================================================================
+  # 配置系统语言、区域和本地化设置
   i18n = {
+    # 默认区域设置
+    # 使用英文以避免程序兼容性问题
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+
+    # 支持的区域设置列表
+    supportedLocales = [
+      "zh_CN.UTF-8/UTF-8"  # 简体中文
+      "en_US.UTF-8/UTF-8"  # 美式英文
+    ];
+
+    # 额外区域设置
     extraLocaleSettings = {
+      # 时间格式（英文风格）
       LC_TIME = "en_US.UTF-8";
+
+      # 货币格式（人民币）
       LC_MONETARY = "zh_CN.UTF-8";
+
+      # 数字格式（中文习惯：使用逗号分隔）
       LC_NUMERIC = "zh_CN.UTF-8";
     };
   };
 
+  # ============================================================================
+  # 输入法配置
+  # ============================================================================
+  # Fcitx5 - 现代中文输入法框架
   i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
+    enable = true;               # 启用输入法
+    type = "fcitx5";            # 使用 Fcitx5
+
     fcitx5 = {
+      # Fcitx5 插件列表
       addons = with pkgs; [
-        fcitx5
-        kdePackages.fcitx5-qt
-        kdePackages.fcitx5-configtool
-        kdePackages.fcitx5-chinese-addons
-        fcitx5-rime
-        fcitx5-nord
-        fcitx5-pinyin-zhwiki
+        # 核心
+        fcitx5                       # Fcitx5 主程序
+
+        # Qt5 集成
+        kdePackages.fcitx5-qt       # Qt5 支持
+        kdePackages.fcitx5-configtool # 配置工具
+
+        # 中文输入法引擎
+        kdePackages.fcitx5-chinese-addons # 中州韵引擎（基础）
+        fcitx5-rime                  # Rime 输入法引擎（高级）
+        fcitx5-pinyin-zhwiki       # 维基词典
+
+        # 外观
+        fcitx5-nord                 # Nord 风格皮肤
+
+        # Lua 支持（用于高级定制）
         fcitx5-lua
-        librime
+        librime                      # Rime 核心库
       ];
+
+      # 启用 Wayland 前端
       waylandFrontend = true;
     };
   };
 
+  # ============================================================================
+  # 会话环境变量
+  # ============================================================================
+  # 输入法相关环境变量
   environment.sessionVariables = {
+    # -------------------- 输入法模块 --------------------
+    # Qt 应用输入法模块
     QT_IM_MODULE = "fcitx";
+
+    # X 输入法（兼容性）
     INPUT_METHOD = "fcitx";
+
+    # X 修改器（兼容性）
     XMODIFIERS = "@im=fcitx";
+
+    # SDL 应用输入法模块
     SDL_IM_MODULE = "fcitx";
+
+    # -------------------- Wayland --------------------
+    # Wayland Ozone 平台支持
     NIXOS_OZONE_WL = "1";
+
+    # 禁用硬件光标（某些环境下需要）
     WLR_NO_HARDWARE_CURSORS = "1";
+
+    # -------------------- 会话信息 --------------------
+    # 会话类型
     XDG_SESSION_TYPE = "wayland";
+
+    # 桌面环境名称
     XDG_SESSION_DESKTOP = "hyprland";
   };
 
+  # ============================================================================
+  # 字体配置
+  # ============================================================================
   fonts.packages = with pkgs; [
-    jetbrains-mono
-    dejavu_fonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    source-han-sans
-    nerd-fonts.jetbrains-mono
-    fira-code
-    liberastika
-    source-code-pro
-    wqy_microhei
-    font-awesome
-    iosevka
+    # --------------------------------------------------------------------------
+    # 编程字体
+    # --------------------------------------------------------------------------
+    jetbrains-mono           # JetBrains Mono - 编程等宽字体
+    nerd-fonts.jetbrains-mono # JetBrains Mono + Nerd Fonts 图标
+
+    # --------------------------------------------------------------------------
+    # 基础字体
+    # --------------------------------------------------------------------------
+    dejavu_fonts             # DejaVu 字体家族
+    noto-fonts              # Noto 字体家族
+
+    # --------------------------------------------------------------------------
+    # 中文开源字体
+    # --------------------------------------------------------------------------
+    noto-fonts-cjk-sans      # 思源黑体（无衬线）
+    noto-fonts-cjk-serif     # 思源宋体（衬线）
+    source-han-sans          # 思源黑体（Adobe 版本）
+    wqy_microhei             # 文泉驿微米黑
+
+    # --------------------------------------------------------------------------
+    # Emoji 和图标
+    # --------------------------------------------------------------------------
+    noto-fonts-color-emoji  # Noto Color Emoji
+
+    # --------------------------------------------------------------------------
+    # 编程和显示字体
+    # --------------------------------------------------------------------------
+    fira-code                # Fira Code - 等宽编程字体（支持连字）
+    liberastika              # Liberastika - 开源无衬线字体
+    source-code-pro           # Adobe Source Code Pro
+
+    # --------------------------------------------------------------------------
+    # 图标字体
+    # --------------------------------------------------------------------------
+    font-awesome             # Font Awesome 图标字体
+
+    # --------------------------------------------------------------------------
+    # Nerd Fonts 图标字体
+    # --------------------------------------------------------------------------
+    iosevka                  # Iosevka - 高度可定制的等宽字体
   ];
 
+  # ============================================================================
+  # 拼写检查
+  # ============================================================================
   environment.systemPackages = with pkgs; [
-    nuspell
-    hyphen
-    hunspell
-    hunspellDicts.en_US
+    # 拼写检查器
+    nuspell                  # 现代拼写检查器
+    hyphen                   # 连字符库
+    hunspell                 # 传统拼写检查器
+
+    # 词典
+    hunspellDicts.en_US      # 美式英语词典
   ];
 }
