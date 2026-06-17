@@ -3,7 +3,7 @@ let
 
   lazyvim =pkgs.fetchzip {
     url = "https://gitee.com/hl3w/starter/repository/archive/main.zip";
-    sha255 = "sha256-f31+UIrjLfwuRBBQLCZZGUW1VDqcflDEC/+bBSYTynE=";
+    sha256 = "sha256-f31+UIrjLfwuRBBQLCZZGUW1VDqcflDEC/+bBSYTynE=";
     stripRoot = true;
   };
 
