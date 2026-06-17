@@ -64,6 +64,8 @@
       system = "x86_64-linux";
 
       # 用户名和主机名
+      # 这些值可通过 install.sh 脚本自动配置
+      # 修改后需重新运行 nixos-rebuild switch --flake .#<hostname>
       username = "silas";
       hostname = "nixos";
 
