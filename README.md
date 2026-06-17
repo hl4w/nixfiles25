@@ -118,13 +118,27 @@ The script will:
 
 ### Manual Installation
 
-If you prefer manual setup, edit `flake.nix` to configure your username and hostname:
+If you prefer manual setup, edit `flake.nix` to configure your username and hostname.
+
+In the `outputs` section of `flake.nix`, find and modify these variables:
 
 ```nix
-# In flake.nix, update these values:
-username = "<your-username>";
-hostname = "<your-hostname>";
+outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  let
+    # ... other config ...
+    
+    # 用户名和主机名
+    # 修改后需重新运行 nixos-rebuild switch --flake .#<hostname>
+    username = "<your-username>";
+    hostname = "<your-hostname>";
+    
+    # ... rest of config ...
+  in {
 ```
+
+Key points about username and hostname:
+- **`username`**: The system user name (used for Home Manager and user directories)
+- **`hostname`**: The machine hostname (used in the flake output target: `#<hostname>`)
 
 Then deploy the configuration:
 
@@ -132,11 +146,15 @@ Then deploy the configuration:
 # Generate lockfile (if not already present)
 nix flake lock
 
-# Rebuild the system
+# Rebuild the system - use your configured hostname here
 sudo nixos-rebuild switch --flake .#<your-hostname>
 ```
 
-Replace `<your-hostname>` with the hostname you configured in `flake.nix`.
+Replace `<your-hostname>` with the hostname you set in `flake.nix`. For example, if you set `hostname = "desktop";`, use:
+
+```bash
+sudo nixos-rebuild switch --flake .#desktop
+```
 
 ### Post-Installation
 
