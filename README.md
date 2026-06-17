@@ -3,7 +3,7 @@
 
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
-**Current Version:** 1.3.0
+**Current Version:** 1.4.0
 
 ![screenshot](screenshots/v10/screenshots-1.png)
 
@@ -92,19 +92,16 @@ nixfiles/
    - `nix-command`
    - `flakes`
 
-### Deploying the Configuration
-
-After installing NixOS, deploy this flake with:
+2. Clone this repository to your system:
 
 ```bash
-sudo nixos-rebuild switch --flake .#nixos-test
+git clone http://git.hl4w.com/hl4w/nixfiles25.git
+cd nixfiles25
 ```
 
-Replace `nixos-test` with the appropriate hostname from the flake outputs.
+### Automated Installation (Recommended)
 
-### Fresh Installation
-
-For a fresh system installation, use the provided install script. The script will interactively prompt for username, hostname, and Git configuration:
+Use the interactive installation script for a guided setup. The script will prompt for configuration values and deploy the system automatically:
 
 ```bash
 chmod +x install.sh
@@ -112,11 +109,41 @@ chmod +x install.sh
 ```
 
 The script will:
-1. Prompt for username (default: silas)
-2. Prompt for hostname (default: nixos)
-3. Prompt for Git user name and email
-4. Auto-generate flake.lock
-5. Deploy system configuration with `nixos-rebuild switch`
+1. Prompt for **username** (default: silas)
+2. Prompt for **hostname** (default: nixos)
+3. Prompt for **Git user name** and **email**
+4. Display configuration summary and confirm before proceeding
+5. Auto-generate `flake.lock` with dependency lockfile
+6. Deploy system configuration with `nixos-rebuild switch`
+
+### Manual Installation
+
+If you prefer manual setup, edit `flake.nix` to configure your username and hostname:
+
+```nix
+# In flake.nix, update these values:
+username = "<your-username>";
+hostname = "<your-hostname>";
+```
+
+Then deploy the configuration:
+
+```bash
+# Generate lockfile (if not already present)
+nix flake lock
+
+# Rebuild the system
+sudo nixos-rebuild switch --flake .#<your-hostname>
+```
+
+Replace `<your-hostname>` with the hostname you configured in `flake.nix`.
+
+### Post-Installation
+
+After successful deployment:
+1. Log out and log back in to apply user configurations
+2. The system will use the configured Hyprland desktop environment
+3. Home Manager will manage user-specific configurations automatically
 
 ## Usage
 

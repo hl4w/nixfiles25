@@ -1,3 +1,22 @@
+Version 1.4.0
+--------------------------------------------------------
+### Cleanup
+- Remove unused flake inputs:
+  - `hyprland-contrib`: Defined but never used in any module
+  - `noctalia`: Defined but `modules/noctalia.nix` was not imported
+
+### Documentation
+- Update README.md:
+  - Add repository clone instructions
+  - Improve installation documentation with automated and manual methods
+  - Add post-installation steps
+  - Update version to 1.4.0
+
+### Configuration
+- Update flake.nix:
+  - Replace hardcoded username/hostname with placeholders (`<your-username>`, `<your-hostname>`)
+  - Add comments explaining how install.sh automates configuration
+
 Version 1.3.0
 --------------------------------------------------------
 ### New Features
