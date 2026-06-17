@@ -1,3 +1,24 @@
+Version 1.5.0
+--------------------------------------------------------
+### New Features
+- Add install-en.sh: English version of installation script
+  - Same functionality as install.sh with English prompts
+  - For international users who prefer English interface
+
+### Improvements
+- Optimize .bashrc configuration:
+  - Add history management (HISTCONTROL, HISTSIZE, HISTTIMEFORMAT)
+  - Enable bash options (histappend, globstar, autocd, cdspell)
+  - Add path configuration for .local/bin, scripts, go/bin
+  - Add conditional checks for eza, starship, go
+  - Add more git aliases (gl, gd, gco, gb)
+  - Add system management aliases (update, nix-update, nix-collect)
+  - Add navigation aliases (.., ..., ....)
+  - Add file existence checks for conditional aliases
+
+### Documentation
+- Update README.md with bilingual installation instructions
+
 Version 1.4.0
 --------------------------------------------------------
 ### Cleanup

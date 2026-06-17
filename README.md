@@ -3,7 +3,7 @@
 
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
-**Current Version:** 1.4.0
+**Current Version:** 1.5.0
 
 ![screenshot](screenshots/v10/screenshots-1.png)
 
@@ -101,11 +101,18 @@ cd nixfiles25
 
 ### Automated Installation (Recommended)
 
-Use the interactive installation script for a guided setup. The script will prompt for configuration values and deploy the system automatically:
+Use the interactive installation script for a guided setup. The script will prompt for configuration values and deploy the system automatically.
 
+**Chinese Version:**
 ```bash
 chmod +x install.sh
 ./install.sh
+```
+
+**English Version:**
+```bash
+chmod +x install-en.sh
+./install-en.sh
 ```
 
 The script will:
