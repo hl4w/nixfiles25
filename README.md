@@ -3,7 +3,7 @@
 
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
-**Current Version:** 1.2.0
+**Current Version:** 1.3.0
 
 ![screenshot](screenshots/v10/screenshots-1.png)
 
@@ -104,11 +104,19 @@ Replace `nixos-test` with the appropriate hostname from the flake outputs.
 
 ### Fresh Installation
 
-For a fresh system installation, use the provided install script:
+For a fresh system installation, use the provided install script. The script will interactively prompt for username, hostname, and Git configuration:
 
 ```bash
+chmod +x install.sh
 ./install.sh
 ```
+
+The script will:
+1. Prompt for username (default: silas)
+2. Prompt for hostname (default: nixos)
+3. Prompt for Git user name and email
+4. Auto-generate flake.lock
+5. Deploy system configuration with `nixos-rebuild switch`
 
 ## Usage
 

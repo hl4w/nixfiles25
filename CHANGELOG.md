@@ -1,3 +1,12 @@
+Version 1.3.0
+--------------------------------------------------------
+### New Features
+- Add install.sh automated deployment script
+  - Interactive prompt for username, hostname, and Git configuration
+  - Auto-generates flake.lock
+  - Deploys system configuration with nixos-rebuild switch
+  - Color-coded output for better user experience
+
 Version 1.2.0
 --------------------------------------------------------
 ### Configuration Updates
