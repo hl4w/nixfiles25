@@ -46,19 +46,12 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Hyprland 社区贡献工具集
-    # 提供额外的 Hyprland 相关工具和脚本
-    hyprland-contrib = {
-      url = "github:hyprwm/hyprland-contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # ============================================================================
   # 输出配置
   # ============================================================================
-  outputs = { self, nixpkgs, home-manager, noctalia, hyprland-contrib, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, noctalia, ... }@inputs:
     let
       # 系统架构
       system = "x86_64-linux";
