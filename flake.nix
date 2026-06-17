@@ -66,8 +66,9 @@
       # 用户名和主机名
       # 这些值可通过 install.sh 脚本自动配置
       # 修改后需重新运行 nixos-rebuild switch --flake .#<hostname>
-      username = "silas";
-      hostname = "nixos";
+      # 默认值为占位符，安装时会被实际值替换
+      username = "<your-username>";
+      hostname = "<your-hostname>";
 
       # 传递给所有模块的特殊参数
       specialArgs = { inherit username hostname; };
