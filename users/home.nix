@@ -74,7 +74,7 @@
 
     settings = {
       # Git 用户信息
-      user.name = "Silas Zhang";
+      user.name = "NixOS User";
       user.email = "silaszk@126.com";
     };
   };

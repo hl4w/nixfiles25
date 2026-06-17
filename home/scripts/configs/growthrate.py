@@ -16,7 +16,7 @@ console = Console()
 old_val = FloatPrompt.ask("Old value")
 new_val = FloatPrompt.ask("New value")
 
-# 计算增长率
+# 计算增长�?
 growth_rate = ((new_val - old_val) / old_val)
 percentage = "{:.2%}".format(growth_rate)
 

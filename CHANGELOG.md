@@ -1,3 +1,19 @@
+Version 1.2.0
+--------------------------------------------------------
+### Configuration Updates
+- Update author information across all configuration files and scripts
+  - Replace personal references with standardized author attribution "Silas Zhang (2026)"
+  - Update flake.nix description to generic format
+  - Update git user.name configuration to generic format
+  - Standardize author comments in 47 configuration files including:
+    - Shell scripts (.sh)
+    - Configuration files (.conf, .rasi, .vim, .jsonc)
+    - Style sheets (.css)
+    - Python scripts (.py)
+    - Waybar theme configurations
+    - Hyprland configurations
+    - Rofi configurations
+
 Version 1.1.0
 --------------------------------------------------------
 ### Documentation

@@ -4,7 +4,7 @@
 # Author: Silas Zhang (2026)
 # ----------------------------------------------------- 
 
-# 关闭所有已运行的 waybar 进程
+# 关闭所有已运行�?waybar 进程
 pkill waybar
 sleep 0.2
 
@@ -12,7 +12,7 @@ sleep 0.2
 DEFAULT_THEME="/hl4w;/hl4w/light"
 THEME_STYLE="$DEFAULT_THEME"
 
-# 从缓存读取当前主题
+# 从缓存读取当前主�?
 CACHE_FILE="$HOME/.cache/.themestyle.sh"
 if [[ -f "$CACHE_FILE" ]]; then
     THEME_STYLE="$(cat "$CACHE_FILE")"
@@ -20,12 +20,12 @@ else
     echo "$DEFAULT_THEME" > "$CACHE_FILE"
 fi
 
-# 分割主题字符串
+# 分割主题字符�?
 IFS=';' read -ra THEMES <<< "$THEME_STYLE"
 THEME_BASE="${THEMES[0]}"
 THEME_VARIANT="${THEMES[1]}"
 
-# 主题无效则恢复默认
+# 主题无效则恢复默�?
 THEME_DIR="$HOME/.config/waybar/themes"
 STYLE_PATH="${THEME_DIR}${THEME_VARIANT}/style.css"
 if [[ ! -f "$STYLE_PATH" ]]; then
@@ -33,9 +33,9 @@ if [[ ! -f "$STYLE_PATH" ]]; then
     THEME_VARIANT="/hl4w/light"
 fi
 
-echo "✅ 加载主题: $THEME_BASE"
+echo "�?加载主题: $THEME_BASE"
 
-# 优先使用自定义配置
+# 优先使用自定义配�?
 CONFIG_FILE="config"
 STYLE_FILE="style.css"
 

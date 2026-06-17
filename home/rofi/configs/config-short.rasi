@@ -113,7 +113,7 @@ textbox-prompt-colon {
     enabled:          true;
     expand:           false;
     padding:          0px 5px 0px 0px;
-    str:              "ï€‚";
+    str:              "ï€?;
     background-color: transparent;
     text-color:       inherit;
 }

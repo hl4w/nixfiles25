@@ -1,5 +1,5 @@
 {
-  description = "Silas Zhang's NixOS 25.11 Flake (Kui & Qingyu)";
+  description = "NixOS 25.11 Flake Configuration";
 
   # ============================================================================
   # Nix 配置选项
