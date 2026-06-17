@@ -29,8 +29,8 @@ info "  HL4W - NixOS 25.11 自动安装部署脚本"
 info "========================================"
 info ""
 
-read -p "请输入用户名 (默认: silas): " USERNAME
-USERNAME="${USERNAME:-silas}"
+read -p "请输入用户名 (默认: hl4w): " USERNAME
+USERNAME="${USERNAME:-hl4w}"
 
 read -p "请输入主机名 (默认: nixos): " HOSTNAME
 HOSTNAME="${HOSTNAME:-nixos}"
