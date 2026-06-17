@@ -40,18 +40,12 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";  # 与 nixpkgs 保持同步
     };
-
-    # Noctalia Shell - 定制化 shell 环境
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # ============================================================================
   # 输出配置
   # ============================================================================
-  outputs = { self, nixpkgs, home-manager, noctalia, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       # 系统架构
       system = "x86_64-linux";
