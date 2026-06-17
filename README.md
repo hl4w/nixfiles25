@@ -109,8 +109,8 @@ chmod +x install.sh
 ```
 
 The script will:
-1. Prompt for **username** (default: silas)
-2. Prompt for **hostname** (default: nixos)
+1. Prompt for **username**
+2. Prompt for **hostname**
 3. Prompt for **Git user name** and **email**
 4. Display configuration summary and confirm before proceeding
 5. Auto-generate `flake.lock` with dependency lockfile
