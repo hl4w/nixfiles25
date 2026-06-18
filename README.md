@@ -170,6 +170,20 @@ After successful deployment:
 2. The system will use the configured Hyprland desktop environment
 3. Home Manager will manage user-specific configurations automatically
 
+### Non-Free Software
+
+This configuration enables installation of non-free (proprietary) software packages by default. Both system-level and user-level configurations include:
+
+```nix
+nixpkgs.config.allowUnfree = true;
+```
+
+This allows you to install packages like:
+- **Steam** - Gaming platform
+- **NVIDIA drivers** - Graphics drivers
+- **VS Code** - Microsoft's editor
+- Other proprietary software with unfree licenses
+
 ## Usage
 
 ### Rebuilding

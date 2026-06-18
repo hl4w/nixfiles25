@@ -16,6 +16,12 @@ Version 1.5.0
   - Add navigation aliases (.., ..., ....)
   - Add file existence checks for conditional aliases
 
+### Configuration
+- Enable non-free software installation:
+  - Add `nixpkgs.config.allowUnfree = true` in hosts/default.nix (system level)
+  - Add `nixpkgs.config.allowUnfree = true` in home/core.nix (user level)
+  - Allows installation of proprietary packages like Steam, NVIDIA drivers, etc.
+
 ### Documentation
 - Update README.md with bilingual installation instructions
 
