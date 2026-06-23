@@ -74,8 +74,8 @@
 
     settings = {
       # Git 用户信息
-      user.name = "NixOS User";
-      user.email = "silaszk@126.com";
+      user.name = "<your-name>";
+      user.email = "<your-email>";
     };
   };
 }

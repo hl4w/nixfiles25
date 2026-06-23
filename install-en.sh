@@ -29,8 +29,8 @@ info "  HL4W - NixOS 25.11 Auto Installation"
 info "========================================"
 info ""
 
-read -p "Enter username (default: hl4w): " USERNAME
-USERNAME="${USERNAME:-hl4w}"
+read -p "Enter username (default: nixos): " USERNAME
+USERNAME="${USERNAME:-nixos}"
 
 read -p "Enter hostname (default: nixos): " HOSTNAME
 HOSTNAME="${HOSTNAME:-nixos}"
