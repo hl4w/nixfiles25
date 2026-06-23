@@ -72,8 +72,8 @@ if [[ ! -f "users/home.nix" ]]; then
     exit 1
 fi
 
-sed -i "s/user.name = \"[^\"]*\"/user.name = \"$GIT_NAME\"/g" users/home.nix
-sed -i "s/user.email = \"[^\"]*\"/user.email = \"$GIT_EMAIL\"/g" users/home.nix
+sed -i "s/user\.name = \"[^\"]*\"/user.name = \"$GIT_NAME\"/g" users/home.nix
+sed -i "s/user\.email = \"[^\"]*\"/user.email = \"$GIT_EMAIL\"/g" users/home.nix
 success "users/home.nix 已更新"
 
 info ""
