@@ -22,7 +22,7 @@ nixfiles/
 ├── flake.nix              # Main flake input and outputs
 ├── flake.lock             # Locked dependencies
 ├── home/                  # Home Manager configurations
-│   ├── bashrc             # Bash shell configuration
+│   ├── .bashrc            # Bash shell configuration
 │   ├── core.nix           # Core home manager settings
 │   ├── dunst/             # Notification daemon
 │   ├── fastfetch/          # System info display tool
@@ -54,11 +54,12 @@ nixfiles/
 │   ├── hardware.nix
 │   ├── hyprland.nix
 │   ├── linux-kernel.nix
-│   ├── noctalia.nix
 │   └── virtualization.nix
 ├── users/                 # User configurations
-    ├── home.nix
-    └── nixos.nix
+│   ├── home.nix
+│   └── nixos.nix
+├── install.sh             # Chinese installation script
+└── install-en.sh          # English installation script
 
 ```
 
@@ -136,8 +137,9 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs:
     
     # 用户名和主机名
     # 修改后需重新运行 nixos-rebuild switch --flake .#<hostname>
-    username = "<your-username>";
-    hostname = "<your-hostname>";
+    # 可通过 install.sh 脚本自动配置
+    username = "nixos";
+    hostname = "nixos";
     
     # ... rest of config ...
   in {

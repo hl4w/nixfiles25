@@ -16,11 +16,28 @@ Version 1.5.0
   - Add navigation aliases (.., ..., ....)
   - Add file existence checks for conditional aliases
 
+### Bug Fixes
+- Fix install.sh/install-en.sh sed commands:
+  - Escape dots in `user.name` and `user.email` patterns
+  - Git user info modification now works correctly
+- Remove unused `modules/noctalia.nix`:
+  - Referred to deleted `noctalia` input, causing potential build failures
+
 ### Configuration
 - Enable non-free software installation:
   - Add `nixpkgs.config.allowUnfree = true` in hosts/default.nix (system level)
   - Add `nixpkgs.config.allowUnfree = true` in home/core.nix (user level)
   - Allows installation of proprietary packages like Steam, NVIDIA drivers, etc.
+- Set default values for username/hostname in flake.nix:
+  - Changed from placeholder `<your-username>` to `nixos`
+  - Allows direct deployment without running install.sh first
+- Unify default username across all files:
+  - install.sh: `hl4w` → `nixos`
+  - install-en.sh: `hl4w` → `nixos`
+  - flake.nix: already `nixos`
+- Update users/home.nix Git config:
+  - Replace hardcoded values with placeholders (`<your-name>`, `<your-email>`)
+  - Will be automatically replaced by install.sh
 
 ### Documentation
 - Update README.md with bilingual installation instructions
