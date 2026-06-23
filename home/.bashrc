@@ -107,7 +107,7 @@ alias ascii='$HOME/.config/scripts/figlet.sh'
 # =====================================================
 alias confb='$EDITOR $HOME/.bashrc'
 alias confh='$EDITOR $HOME/.config/hypr/hyprland.conf'
-alias confw='$EDITOR $HOME/.config/waybar/config.jsonc'
+alias confw='$EDITOR $HOME/.config/waybar/modules.json'
 alias notes='$EDITOR $HOME/notes.txt'
 
 # =====================================================

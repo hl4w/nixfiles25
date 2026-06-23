@@ -8,6 +8,7 @@
     # 复制脚本并赋予执行权限
     cp -rf "${../waybar}/launch.sh" "$HOME/.config/waybar/"
     cp -rf "${../waybar}/themeswitcher.sh" "$HOME/.config/waybar/"
+    cp -rf "${../waybar}/reload.sh" "$HOME/.config/waybar/"
     find "$HOME/.config/waybar" -type f -name "*.sh" -exec chmod 755 {} \;
 
     # 复制配置文件并赋予只读权限
