@@ -3,7 +3,7 @@
 
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
-**Current Version:** 1.5.0
+**Current Version:** 1.6.0
 
 ![screenshot](screenshots/v10/screenshots-1.png)
 

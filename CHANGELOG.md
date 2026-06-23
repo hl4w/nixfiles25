@@ -1,3 +1,30 @@
+Version 1.6.0
+--------------------------------------------------------
+### Bug Fixes
+- Fix install.sh/install-en.sh sed commands:
+  - Escape dots in `user.name` and `user.email` patterns
+  - Git user info modification now works correctly
+- Remove unused `modules/noctalia.nix`:
+  - Referred to deleted `noctalia` input, causing potential build failures
+- Set default values for username/hostname in flake.nix:
+  - Changed from placeholder `<your-username>` to `nixos`
+  - Allows direct deployment without running install.sh first
+
+### Improvements
+- Unify default username across all files:
+  - install.sh: `hl4w` → `nixos`
+  - install-en.sh: `hl4w` → `nixos`
+  - flake.nix: already `nixos`
+- Update users/home.nix Git config:
+  - Replace hardcoded values with placeholders (`<your-name>`, `<your-email>`)
+  - Will be automatically replaced by install.sh
+- Maintain author attribution:
+  - All files keep `Author: Silas Zhang (2026)`
+  - .bashrc reverted to original author
+
+### Documentation
+- Update README.md version to 1.6.0
+
 Version 1.5.0
 --------------------------------------------------------
 ### New Features
