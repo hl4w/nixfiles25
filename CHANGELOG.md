@@ -28,11 +28,15 @@ Version 1.5.0
   - Referred to deleted `noctalia` input, causing potential build failures
 - Fix Home Manager file clobbering issue:
   - Add `force = true` to `xdg.configFile."fcitx5/conf/classicui.conf"` in `home/fcitx5/default.nix`
-  - Add `force = true` to `xdg.configFile."gtk-4.0/gtk.css"` and `xdg.configFile."gtk-3.0/gtk.css"` in `home/gtkqt/default.nix`
   - Add `force = true` to `xdg.configFile."Kvantum/kvantum.kvconfig"` in `home/gtkqt/default.nix`
+  - Add text content to `xdg.configFile."gtk-4.0/gtk.css"` and `xdg.configFile."gtk-3.0/gtk.css"` in `home/gtkqt/default.nix`
 - Fix install.sh/install-en.sh nix command execution:
   - Add `--extra-experimental-features "nix-command flakes"` flag to `nix flake update`
   - Solves "experimental Nix feature 'nix-command' is disabled" error
+- Fix Home Manager config file conflicts:
+  - Add `home-manager.backupFileExtension = "backup"` in `flake.nix`
+  - Automatically backs up existing config files (e.g., `settings.ini` → `settings.ini.backup`)
+  - Resolves "Existing file would be clobbered" errors for all Home Manager managed files
 
 ### Configuration
 - Enable non-free software installation:

@@ -232,12 +232,13 @@ The `.bashrc` configuration includes useful aliases for daily operations:
 
 ### File Clobbering
 
-If you encounter "Existing file would be clobbered" errors during deployment, the configuration now includes `force = true` for critical XDG config files:
-- `fcitx5/conf/classicui.conf`
-- `gtk-4.0/gtk.css`, `gtk-3.0/gtk.css`
-- `Kvantum/kvantum.kvconfig`
+The configuration uses `home-manager.backupFileExtension = "backup"` to handle existing config file conflicts. When Home Manager encounters an existing file (e.g., `~/.config/gtk-4.0/settings.ini`), it will:
+- Automatically rename the existing file to `*.backup` (e.g., `settings.ini.backup`)
+- Continue deploying the new configuration
 
-This ensures Home Manager can overwrite existing configuration files during deployment.
+This approach is more robust than individual `force = true` settings and handles all Home Manager managed files uniformly.
+
+**Note:** If you want to preserve your custom configurations, check the `.backup` files after deployment and merge any custom settings.
 
 ## Customization
 
