@@ -78,7 +78,7 @@ success "users/home.nix 已更新"
 
 info ""
 info "正在生成 flake.lock..."
-nix flake update --commit-lock-file || warning "flake.lock 更新失败，继续尝试部署"
+nix flake update --extra-experimental-features "nix-command flakes" --commit-lock-file || warning "flake.lock 更新失败，继续尝试部署"
 
 info ""
 info "正在部署系统配置..."

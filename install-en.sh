@@ -78,7 +78,7 @@ success "users/home.nix updated"
 
 info ""
 info "Generating flake.lock..."
-nix flake update --commit-lock-file || warning "flake.lock update failed, continuing deployment"
+nix flake update --extra-experimental-features "nix-command flakes" --commit-lock-file || warning "flake.lock update failed, continuing deployment"
 
 info ""
 info "Deploying system configuration..."
