@@ -32,6 +32,21 @@
   # 启用 dconf
   dconf.enable = true;
 
+  # 强制覆盖已存在的 GTK CSS 配置文件
+  xdg.configFile."gtk-4.0/gtk.css" = {
+    force = true;
+    text = ''
+      /* GTK4 自定义样式 */
+    '';
+  };
+
+  xdg.configFile."gtk-3.0/gtk.css" = {
+    force = true;
+    text = ''
+      /* GTK3 自定义样式 */
+    '';
+  };
+
   xdg.configFile."Kvantum/kvantum.kvconfig" = {
      force = true;
      text = ''
