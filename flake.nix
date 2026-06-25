@@ -80,8 +80,9 @@
           home-manager.nixosModules.home-manager
           {
             # Home Manager 全局配置
-            home-manager.useGlobalPkgs = true;      # 使用系统的 nixpkgs
-            home-manager.useUserPackages = true;     # 使用用户包管理
+            home-manager.useGlobalPkgs = true;       # 使用系统的 nixpkgs
+            home-manager.useUserPackages = true;      # 使用用户包管理
+            home-manager.backupFileExtension = "backup";  # 自动备份已存在的配置文件
             home-manager.extraSpecialArgs = inputs // specialArgs;  # 传递所有输入和参数
             home-manager.users.${username} = import ./users/home.nix;  # 用户 Home Manager 配置
           }
