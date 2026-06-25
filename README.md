@@ -4,6 +4,7 @@
 An advanced configuration of Hyprland for NixOS based distributions. This repository contains the NixOS and Home Manager configuration files that build and manage systems. It uses Nix flakes for declarative, reproducible system deployments.
 
 **Current Version:** 1.5.0
+**NixOS Version:** 25.11
 
 ![screenshot](screenshots/v10/screenshots-1.png)
 
@@ -29,40 +30,58 @@ nixfiles/
 │   ├── fcitx5/            # Chinese input method (Rime)
 │   ├── gtkqt/             # GTK/Qt theme configuration
 │   ├── hypr/              # Hyprland (Wayland compositor)
+│   │   ├── conf/          # Hyprland configuration modules
+│   │   │   ├── animations/
+│   │   │   ├── decorations/
+│   │   │   ├── environments/
+│   │   │   ├── keybindings/
+│   │   │   ├── monitors/
+│   │   │   ├── windowrules/
+│   │   │   └── windows/
+│   │   ├── scripts/       # Hyprland helper scripts
+│   │   ├── hyprland.conf  # Main Hyprland config
+│   │   ├── hypridle.conf  # Idle management
+│   │   ├── hyprlock.conf  # Lock screen
+│   │   └── hyprpaper.conf # Wallpaper manager
 │   ├── nvim/              # Neovim editor
 │   ├── programs/          # Various program configurations
+│   │   ├── browsers.nix   # Browser settings
+│   │   ├── common.nix     # Common packages
+│   │   ├── git.nix        # Git configuration
+│   │   ├── media.nix      # Media applications
+│   │   └── xdg.nix        # XDG defaults
 │   ├── rofi/              # Application launcher
 │   ├── scripts/           # User scripts
 │   │   └── configs/       # Utility scripts (cleanup, snapshot, etc.)
-│   ├── settings/          # System settings
+│   ├── settings/          # System settings (wallpaper engine, blur, etc.)
 │   ├── shell/             # Shell configuration
 │   ├── starship/          # Prompt configuration
 │   ├── swappy/            # Screenshot tool
-│   ├── wal/               # Wallpaper and colors
+│   ├── wal/               # Wallpaper and colors (Pywal)
 │   ├── wallpapers/        # Wallpaper images
 │   ├── waybar/            # Status bar
-│   │   ├── themes/        # Waybar themes
+│   │   ├── themes/        # Waybar themes (hl4w, hl4w-blur, etc.)
 │   │   ├── reload.sh      # Waybar reload script
 │   │   └── themeswitcher.sh
 │   └── wlogout/           # Logout screen
 ├── hosts/                 # Host-specific configurations
-│   ├── default.nix
-│   └── hardware-configuration.nix
+│   ├── default.nix        # Main system configuration
+│   └── hardware-configuration.nix  # Auto-generated hardware config
 ├── modules/               # NixOS modules
-│   ├── ai-robot.nix
-│   ├── auto-upgrade.nix
-│   ├── bootloader.nix
-│   ├── chinese.nix
-│   ├── dns.nix
-│   ├── flatpak-module.nix
-│   ├── gc.nix
-│   ├── hardware.nix
-│   ├── hyprland.nix
-│   ├── linux-kernel.nix
-│   └── virtualization.nix
+│   ├── ai-robot.nix       # AI/ML development tools
+│   ├── auto-upgrade.nix   # Automatic system updates (optional)
+│   ├── bootloader.nix     # Bootloader configuration
+│   ├── chinese.nix        # Chinese locale and fonts
+│   ├── dns.nix            # DNS configuration
+│   ├── flatpak-module.nix # Flatpak support
+│   ├── gc.nix             # Garbage collection
+│   ├── hardware.nix       # Hardware drivers
+│   ├── hyprland.nix       # Hyprland desktop module
+│   ├── linux-kernel.nix   # Kernel configuration
+│   └── virtualization.nix # Docker, KVM, QEMU (optional)
 ├── users/                 # User configurations
-│   ├── home.nix
-│   └── nixos.nix
+│   ├── home.nix           # Home Manager user config
+│   └── nixos.nix          # NixOS user config
 ├── install.sh             # Chinese installation script
 └── install-en.sh          # English installation script
 
@@ -94,7 +113,7 @@ nixfiles/
 
 ### Prerequisites
 
-1. Install NixOS with the following options enabled:
+1. Install NixOS 25.11 with the following options enabled:
    - `nix-command`
    - `flakes`
 
@@ -104,6 +123,8 @@ nixfiles/
 git clone http://git.hl4w.com/hl4w/nixfiles25.git
 cd nixfiles25
 ```
+
+**Note:** This configuration uses Chinese mirror sources (Tsinghua and USTC) for faster package downloads in China. The mirrors are configured in `flake.nix` under `nixConfig.substituters`.
 
 ### Automated Installation (Recommended)
 
@@ -245,22 +266,31 @@ This approach is more robust than individual `force = true` settings and handles
 ### Waybar Themes
 
 Multiple Waybar themes are available in `home/waybar/themes/`:
-- hl4w (default)
-- hl4w-blur
-- hl4w-blur-bottom
-- hl4w-minimal
-- starter
+- **hl4w** (default) - Standard hl4w theme
+- **hl4w-blur** - Blurred background variant
+- **hl4w-blur-bottom** - Blurred background at bottom
+- **hl4w-bottom** - Standard theme at bottom position
+- **hl4w-minimal** - Minimalist variant
+- **starter** - Beginner-friendly theme
 
-Switch themes using the theme switcher script.
+Each theme has color variants: black, dark, light, white, colored, mixed.
+
+Switch themes using the theme switcher script (`home/waybar/themeswitcher.sh`).
 
 ### Hyprland Configuration
 
 Hyprland settings are highly customizable through configuration files in `home/hypr/conf/`:
-- Animations
-- Decorations
-- Keybindings
-- Monitor setups
-- Window rules
+- **animations/** - Animation presets (fast, high, moving, disabled)
+- **decorations/** - Border and blur settings
+- **environments/** - Environment variables (default, nvidia, kvm)
+- **keybindings/** - Keyboard shortcuts
+- **monitors/** - Monitor resolution presets (1366x768 to 3440x1440)
+- **windowrules/** - Window-specific rules
+- **windows/** - Window border styles
+
+**Monitor Presets:** The configuration includes presets for common resolutions. Edit `home/hypr/conf/monitors/default.conf` or choose a preset that matches your display.
+
+**NVIDIA Support:** Use `home/hypr/conf/environments/nvidia.conf` for NVIDIA GPU systems.
 
 ### Scripts
 
@@ -283,6 +313,29 @@ Various utility scripts are available in `home/scripts/` and `home/hypr/scripts/
 - `bravebookmarks.sh`: Brave browser bookmarks
 - And more
 
+## Development
+
+### Code Formatting
+
+This project uses `nixpkgs-fmt` for Nix code formatting. Run:
+
+```bash
+nix fmt
+```
+
+This will format all `.nix` files according to the standard style.
+
+### Contributing
+
+When modifying configurations:
+1. Follow the existing comment style (Chinese comments with clear section headers)
+2. Run `nix fmt` before committing
+3. Test changes with `sudo nixos-rebuild switch --flake .#` before pushing
+
 ## License
 
 This configuration is provided as-is for personal use. Feel free to study and adapt the configurations for your own NixOS setups.
+
+## Author
+
+Silas Zhang (2026)
