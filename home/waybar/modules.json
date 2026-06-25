@@ -1,4 +1,4 @@
-// # -----------------------------------------------------
+Ôªø// # -----------------------------------------------------
 // # Waybar modules  Config
 // # Author: Silas Zhang (2026)
 // # ----------------------------------------------------- 
@@ -59,7 +59,7 @@
 
     // Cliphist
     "custom/cliphist": {
-        "format": "ÔÉ?,
+        "format": "?,
         "on-click": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh",
         "on-click-right": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh d",
         "on-click-middle": "sleep 0.1 && $HOME/.config/scripts/cliphist.sh w",
@@ -68,7 +68,7 @@
 
     // Wallpaper Switcher
     "custom/wallpaper": {
-        "format": "ÔÄ?,
+        "format": "?,
         "on-click": "$HOME/.config/hypr/scripts/wallpaper.sh select",
         "on-click-right": "$HOME/.config/hypr/scripts/wallpaper.sh",
         "tooltip": false
@@ -76,35 +76,35 @@
 
     // Waybar Theme Switcher
     "custom/waybarthemes": {
-        "format": "ÔÖ?,
+        "format": "?,
         "on-click": "$HOME/.config/waybar/themeswitcher.sh",
         "tooltip": false
     },
 
     // Keybindings Help
     "custom/keybindings": {
-        "format": "ÔÑ?,
+        "format": "?,
         "on-click": "$HOME/.config/hypr/scripts/keybindings.sh",
         "tooltip": false
     },
 
     // Filemanager Launcher
     "custom/filemanager": {
-        "format": "ÔÅ?,
+        "format": "?,
         "on-click": "$HOME/.config/settings/filemanager.sh",
         "tooltip": false
     },
 
     // Browser Launcher
     "custom/browser": {
-        "format": "Ôâ?,
+        "format": "?,
         "on-click": "$HOME/.config/settings/browser.sh",
         "tooltip": false
     },
 
     // Calculator
     "custom/calculator": {
-        "format": "Ôá?,
+        "format": "?,
         "on-click": "qalculate-qt",
         "tooltip": false
     },
@@ -119,7 +119,7 @@
 
     // Rofi Application Menu (Icon)
     "custom/appmenuicon": {
-        "format": "Ôå?,
+        "format": "?,
         "on-click": "rofi -show drun -replace",
         "on-click-right": "$HOME/.config/hypr/scripts/keybindings.sh",
         "tooltip": false
@@ -127,7 +127,7 @@
 
     // Power Menu
     "custom/exit": {
-        "format": "ÔÄ?,
+        "format": "?,
         "on-click": "wlogout",
         "tooltip": false
     },
@@ -138,8 +138,8 @@
         "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
-            "locked": "ÔÄ?,
-            "unlocked": "ÔÇ?
+            "locked": "?,
+            "unlocked": "?
         }
     },
 
@@ -158,7 +158,7 @@
 
     // System Info Group Label
     "custom/system": {
-        "format": "Óë?,
+        "format": "?,
         "tooltip": false
     },
 
@@ -221,12 +221,12 @@
     // Network
     "network": {
         "format": "{ifname}",
-        "format-wifi": "Ôá?  {signalStrength}%",
-        "format-ethernet": "Ôû? {ifname}",
+        "format-wifi": "?  {signalStrength}%",
+        "format-ethernet": "? {ifname}",
         "format-disconnected": "Disconnected",
-        "tooltip-format": "Ôû?{ifname} via {gwaddri}",
-        "tooltip-format-wifi": "Ôá? {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
-        "tooltip-format-ethernet": "Ôû?{ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+        "tooltip-format": "?{ifname} via {gwaddri}",
+        "tooltip-format-wifi": "? {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+        "tooltip-format-ethernet": "?{ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50,
         "on-click": "$HOME/.config/settings/networkmanager.sh"
@@ -239,35 +239,35 @@
             "critical": 15
         },
         "format": "{icon}   {capacity}%",
-        "format-charging": "Ôó? {capacity}%",
-        "format-plugged": "Ôá? {capacity}%",
+        "format-charging": "? {capacity}%",
+        "format-plugged": "? {capacity}%",
         "format-alt": "{icon}  {time}",
-        "format-icons": ["Ôâ?", "Ôâ?", "Ôâ?", "Ôâ?", "ÔâÄ "]
+        "format-icons": ["?", "?", "?", "?", "ÔâÄ "]
     },
 
     // PulseAudio
     "pulseaudio": {
         "format": "{icon}   {volume}%",
-        "format-bluetooth": "{volume}%  {icon}Ôä?{format_source}",
-        "format-bluetooth-muted": "Ôö?{icon}Ôä?{format_source}",
-        "format-muted": "Ôö?{format_source}",
-        "format-source": "{volume}% ÔÑ?,
-        "format-source-muted": "ÔÑ?,
+        "format-bluetooth": "{volume}%  {icon}?{format_source}",
+        "format-bluetooth-muted": "?{icon}?{format_source}",
+        "format-muted": "?{format_source}",
+        "format-source": "{volume}% ?,
+        "format-source-muted": "?,
         "format-icons": {
-            "headphone": "ÔÄ?",
-            "hands-free": "Ôñ?",
-            "headset": "Ôñ?",
-            "phone": "ÔÇ?",
-            "portable": "ÔÇ?",
-            "car": "ÔÜ?",
-            "default": ["ÔÄ?", "ÔÄ?", "ÔÄ?"]
+            "headphone": "?",
+            "hands-free": "?",
+            "headset": "?",
+            "phone": "?",
+            "portable": "?",
+            "car": "?",
+            "default": ["?", "?", "?"]
         },
         "on-click": "pavucontrol-qt"
     },
 
     // Bluetooth
     "bluetooth": {
-        "format": "Ôä?{status}",
+        "format": "?{status}",
         "format-disabled": "",
         "format-off": "",
         "interval": 30,
@@ -287,8 +287,8 @@
         "format": "{icon}",
         "tooltip": true,
         "format-icons": {
-            "activated": "Ôè?,
-            "deactivated": "ÔÄ?
+            "activated": "?,
+            "deactivated": "?
         },
         "on-click-right": "hyprlock"
     }

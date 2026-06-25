@@ -1,4 +1,4 @@
-// # Author: Silas Zhang (2026)
+Ôªø// # Author: Silas Zhang (2026)
 // # -----------------------------------------------------
 //
 {
@@ -51,7 +51,7 @@
 
     // Cliphist
     "custom/cliphist": {
-        "format": "ÔÉ?,
+        "format": "?,
         "on-click": "sleep 0.1 && ~/.config/scripts/cliphist.sh",
         "on-click-right": "sleep 0.1 && ~/.config/scripts/cliphist.sh d",
         "on-click-middle": "sleep 0.1 && ~/.config/scripts/cliphist.sh w",
@@ -60,7 +60,7 @@
 
     // Updates Count
     "custom/updates": {
-        "format": "ÔÇ? {}",
+        "format": "? {}",
         "tooltip-format": "{}",
         "escape": true,
         "return-type": "json",
@@ -78,7 +78,7 @@
 
     // Wallpaper
     "custom/wallpaper": {
-        "format": "ÔÄ?,
+        "format": "?,
         "on-click": "~/.config/hypr/scripts/wallpaper.sh select",
         "on-click-right": "~/.config/hypr/scripts/wallpaper.sh",
         "tooltip": false
@@ -86,35 +86,35 @@
 
     // Waybar Themes
     "custom/waybarthemes": {
-        "format": "ÔÖ?,
+        "format": "?,
         "on-click": "~/.config/waybar/themeswitcher.sh",
         "tooltip": false
     },
 
     // Settings
     "custom/settings": {
-        "format": "ÔÄ?,
+        "format": "?,
         "on-click": "~/.config/apps/hl4w_.config_Settings-x86_64.AppImage",
         "tooltip": false
     },
 
     // Keybindings
     "custom/keybindings": {
-        "format": "ÔÑ?,
+        "format": "?,
         "on-click": "~/.config/hypr/scripts/keybindings.sh",
         "tooltip": false
     },
 
     // Filemanager Launcher
     "custom/filemanager": {
-        "format": "ÔÅ?,
+        "format": "?,
         "on-click": "thunar",
         "tooltip": false
     },
 
     // Browser Launcher
     "custom/browser": {
-        "format": "Ôã?,
+        "format": "?,
         "on-click": "~/.config/.settings/browser.sh",
         "tooltip": false
     },
@@ -136,7 +136,7 @@
 
     // Power Menu
     "custom/exit": {
-        "format": "ÔÄ?,
+        "format": "?,
         "on-click": "wlogout",
         "tooltip": false
     },
@@ -147,8 +147,8 @@
         "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
-            "locked": "ÔÄ?,
-            "unlocked": "ÔÇ?
+            "locked": "?,
+            "unlocked": "?
         }
     },
 
@@ -165,7 +165,7 @@
 
     // System
     "custom/system": {
-        "format": "Óë?,
+        "format": "?,
         "tooltip": false
     },
 
@@ -237,12 +237,12 @@
     // Network
     "network": {
         "format": "{ifname}",
-        "format-wifi": "Ôá?  {signalStrength}%",
-        "format-ethernet": "Ôû? {ipaddr}",
+        "format-wifi": "?  {signalStrength}%",
+        "format-ethernet": "? {ipaddr}",
         "format-disconnected": "Not connected",
-        "tooltip-format": "Ôû?{ifname} via {gwaddri}",
-        "tooltip-format-wifi": "Ôá?  {essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "ÔÉ? {ifname} ({ipaddr}/{cidr})",
+        "tooltip-format": "?{ifname} via {gwaddri}",
+        "tooltip-format-wifi": "?  {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "? {ifname} ({ipaddr}/{cidr})",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50,
         "on-click": "alacritty -e nmtui"
@@ -255,28 +255,28 @@
             "critical": 15
         },
         "format": "{icon}   {capacity}%",
-        "format-charging": "Ôó? {capacity}%",
-        "format-plugged": "Ôá? {capacity}%",
+        "format-charging": "? {capacity}%",
+        "format-plugged": "? {capacity}%",
         "format-alt": "{icon}  {time}",
-        "format-icons": ["Ôâ?", "Ôâ?", "Ôâ?", "Ôâ?", "ÔâÄ "]
+        "format-icons": ["?", "?", "?", "?", "ÔâÄ "]
     },
 
     // Pulseaudio
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}Ôä?{format_source}",
-        "format-bluetooth-muted": "Ôö?{icon}Ôä?{format_source}",
-        "format-muted": "Ôö?{format_source}",
-        "format-source": "{volume}% ÔÑ?,
-        "format-source-muted": "ÔÑ?,
+        "format-bluetooth": "{volume}% {icon}?{format_source}",
+        "format-bluetooth-muted": "?{icon}?{format_source}",
+        "format-muted": "?{format_source}",
+        "format-source": "{volume}% ?,
+        "format-source-muted": "?,
         "format-icons": {
-            "headphone": "ÔÄ?,
-            "hands-free": "Ôñ?,
-            "headset": "Ôñ?,
-            "phone": "ÔÇ?,
-            "portable": "ÔÇ?,
-            "car": "ÔÜ?,
-            "default": ["ÔÄ?, "ÔÄ?", "ÔÄ?"]
+            "headphone": "?,
+            "hands-free": "?,
+            "headset": "?,
+            "phone": "?,
+            "portable": "?,
+            "car": "?,
+            "default": ["?, "?", "?"]
         },
         "on-click": "pavucontrol"
     },
@@ -302,8 +302,8 @@
         "format": "{icon}",
         "tooltip": true,
         "format-icons": {
-            "activated": "Ôè?,
-            "deactivated": "ÔÄ?
+            "activated": "?,
+            "deactivated": "?
         },
         "on-click-right": "hyprlock"
     }
