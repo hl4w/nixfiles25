@@ -15,6 +15,10 @@ Version 1.5.0
   - Add system management aliases (update, nix-update, nix-collect)
   - Add navigation aliases (.., ..., ....)
   - Add file existence checks for conditional aliases
+- Add utility scripts:
+  - `home/scripts/configs/cleanup.sh`: System cleanup script for `cleanup` alias
+  - `home/scripts/configs/snapshot.sh`: System snapshot script for `ts` alias
+  - `home/waybar/reload.sh`: Waybar reload script for `rw` alias
 
 ### Bug Fixes
 - Fix install.sh/install-en.sh sed commands:
@@ -22,6 +26,10 @@ Version 1.5.0
   - Git user info modification now works correctly
 - Remove unused `modules/noctalia.nix`:
   - Referred to deleted `noctalia` input, causing potential build failures
+- Fix Home Manager file clobbering issue:
+  - Add `force = true` to `xdg.configFile."fcitx5/conf/classicui.conf"` in `home/fcitx5/default.nix`
+  - Add `force = true` to `xdg.configFile."gtk-4.0/gtk.css"` and `xdg.configFile."gtk-3.0/gtk.css"` in `home/gtkqt/default.nix`
+  - Add `force = true` to `xdg.configFile."Kvantum/kvantum.kvconfig"` in `home/gtkqt/default.nix`
 
 ### Configuration
 - Enable non-free software installation:
@@ -38,9 +46,14 @@ Version 1.5.0
 - Update users/home.nix Git config:
   - Replace hardcoded values with placeholders (`<your-name>`, `<your-email>`)
   - Will be automatically replaced by install.sh
+- Update .bashrc aliases:
+  - Fix `confw` alias to point to `modules.json` instead of `config.jsonc`
+  - Add `rw` alias for Waybar reload
+  - Add `cleanup`, `ts`, `ascii` aliases for utility scripts
 
 ### Documentation
 - Update README.md with bilingual installation instructions
+- Update README.md project structure to reflect removed files and added scripts
 
 Version 1.4.0
 --------------------------------------------------------

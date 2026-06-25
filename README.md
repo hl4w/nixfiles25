@@ -25,21 +25,26 @@ nixfiles/
 │   ├── .bashrc            # Bash shell configuration
 │   ├── core.nix           # Core home manager settings
 │   ├── dunst/             # Notification daemon
-│   ├── fastfetch/          # System info display tool
+│   ├── fastfetch/         # System info display tool
 │   ├── fcitx5/            # Chinese input method (Rime)
+│   ├── gtkqt/             # GTK/Qt theme configuration
 │   ├── hypr/              # Hyprland (Wayland compositor)
 │   ├── nvim/              # Neovim editor
 │   ├── programs/          # Various program configurations
 │   ├── rofi/              # Application launcher
 │   ├── scripts/           # User scripts
-│   ├── settings/         # System settings
-│   ├── shell/            # Shell configuration
-│   ├── starship/         # Prompt configuration
-│   ├── swappy/           # Screenshot tool
-│   ├── wal/              # Wallpaper and colors
-│   ├── wallpapers/       # Wallpaper images
-│   ├── waybar/           # Status bar
-│   └── wlogout/          # Logout screen
+│   │   └── configs/       # Utility scripts (cleanup, snapshot, etc.)
+│   ├── settings/          # System settings
+│   ├── shell/             # Shell configuration
+│   ├── starship/          # Prompt configuration
+│   ├── swappy/            # Screenshot tool
+│   ├── wal/               # Wallpaper and colors
+│   ├── wallpapers/        # Wallpaper images
+│   ├── waybar/            # Status bar
+│   │   ├── themes/        # Waybar themes
+│   │   ├── reload.sh      # Waybar reload script
+│   │   └── themeswitcher.sh
+│   └── wlogout/           # Logout screen
 ├── hosts/                 # Host-specific configurations
 │   ├── default.nix
 │   └── hardware-configuration.nix
@@ -206,6 +211,32 @@ sudo nixos-rebuild switch --flake .# --update
 
 Or use the auto-upgrade module for automatic updates.
 
+### Common Aliases
+
+The `.bashrc` configuration includes useful aliases for daily operations:
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `c` | `clear` | Clear terminal |
+| `nf`, `pf`, `ff` | `fastfetch` | Show system info |
+| `..`, `...`, `....` | `cd ../..`, etc. | Quick navigation |
+| `gs`, `ga`, `gc`, `gp`, `gpl` | Git commands | Git shortcuts |
+| `update` | `sudo nixos-rebuild switch --flake .#` | System rebuild |
+| `nix-collect` | `sudo nix-collect-garbage -d` | Clean old generations |
+| `cleanup` | `~/.config/scripts/cleanup.sh` | System cleanup |
+| `ts` | `~/.config/scripts/snapshot.sh` | System snapshot |
+| `rw` | `~/.config/waybar/reload.sh` | Reload Waybar |
+| `confb`, `confh`, `confw` | Edit config files | Quick config editing |
+
+### File Clobbering
+
+If you encounter "Existing file would be clobbered" errors during deployment, the configuration now includes `force = true` for critical XDG config files:
+- `fcitx5/conf/classicui.conf`
+- `gtk-4.0/gtk.css`, `gtk-3.0/gtk.css`
+- `Kvantum/kvantum.kvconfig`
+
+This ensures Home Manager can overwrite existing configuration files during deployment.
+
 ## Customization
 
 ### Waybar Themes
@@ -230,10 +261,23 @@ Hyprland settings are highly customizable through configuration files in `home/h
 
 ### Scripts
 
-Various utility scripts are available in `home/scripts/` and `home/hypr/scripts/` for:
-- Application launching
-- System control
-- Wallpaper management
+Various utility scripts are available in `home/scripts/` and `home/hypr/scripts/`:
+
+**System Management:**
+- `cleanup.sh`: System cleanup (remove old packages, cache)
+- `snapshot.sh`: Create system snapshots for rollback
+- `reload.sh` (Waybar): Reload Waybar configuration
+
+**Hyprland Scripts:**
+- Window management (resize, move, toggle)
+- Power management (shutdown, reboot, suspend, lock)
+- Monitor configuration
+- Wallpaper and theme switching
+
+**Utilities:**
+- `figlet.sh`: ASCII art generator
+- `cliphist.sh`: Clipboard history management
+- `bravebookmarks.sh`: Brave browser bookmarks
 - And more
 
 ## License
