@@ -48,6 +48,20 @@
 
     # 自动优化存储：启用文件去重和压缩以节省空间
     auto-optimise-store = true;
+
+    # 包下载源（按优先级排序）
+    substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://cache.nixos.org/"
+    ];
+
+    # 信任的下载源（无需签名验证即可使用）
+    # 注意：这是受限制设置，必须在系统级配置中定义
+    trusted-substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+    ];
   };
 
   # 允许安装非自由软件包

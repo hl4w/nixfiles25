@@ -13,16 +13,11 @@
     # 1. 清华大学镜像 - 国内访问速度快
     # 2. 中国科学技术大学镜像 - 备用镜像
     # 3. 官方 Nix 缓存 - 兜底方案
+    # 注意：trusted-substituters 是受限制设置，需在 hosts/default.nix 的 nix.settings 中配置
     substituters = [
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
-    ];
-
-    # 信任的下载源（无需签名验证即可使用）
-    trusted-substituters = [
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
     ];
   };
 
