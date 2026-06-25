@@ -61,7 +61,6 @@ nixfiles/
 │   ├── wallpapers/        # Wallpaper images
 │   ├── waybar/            # Status bar
 │   │   ├── themes/        # Waybar themes (hl4w, hl4w-blur, etc.)
-│   │   ├── reload.sh      # Waybar reload script
 │   │   └── themeswitcher.sh
 │   └── wlogout/           # Logout screen
 ├── hosts/                 # Host-specific configurations
@@ -259,7 +258,6 @@ The `.bashrc` configuration includes useful aliases for daily operations:
 | `nix-collect` | `sudo nix-collect-garbage -d` | Clean old generations |
 | `cleanup` | `~/.config/scripts/cleanup.sh` | System cleanup |
 | `ts` | `~/.config/scripts/snapshot.sh` | System snapshot |
-| `rw` | `~/.config/waybar/reload.sh` | Reload Waybar |
 | `confb`, `confh`, `confw` | Edit config files | Quick config editing |
 
 ### File Clobbering
@@ -310,7 +308,6 @@ Various utility scripts are available in `home/scripts/` and `home/hypr/scripts/
 **System Management:**
 - `cleanup.sh`: System cleanup (remove old packages, cache)
 - `snapshot.sh`: Create system snapshots for rollback
-- `reload.sh` (Waybar): Reload Waybar configuration
 
 **Hyprland Scripts:**
 - Window management (resize, move, toggle)

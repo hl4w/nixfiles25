@@ -18,7 +18,6 @@ Version 1.5.0
 - Add utility scripts:
   - `home/scripts/configs/cleanup.sh`: System cleanup script for `cleanup` alias
   - `home/scripts/configs/snapshot.sh`: System snapshot script for `ts` alias
-  - `home/waybar/reload.sh`: Waybar reload script for `rw` alias
 
 ### Bug Fixes
 - Fix install.sh/install-en.sh sed commands:
@@ -62,7 +61,6 @@ Version 1.5.0
   - Will be automatically replaced by install.sh
 - Update .bashrc aliases:
   - Fix `confw` alias to point to `modules.json` instead of `config.jsonc`
-  - Add `rw` alias for Waybar reload
   - Add `cleanup`, `ts`, `ascii` aliases for utility scripts
 
 ### Documentation
