@@ -1,4 +1,4 @@
-﻿#!/run/current-system/sw/bin/bash
+#!/run/current-system/sw/bin/bash
 # -----------------------------------------------------
 # Dunst Config
 # Author: Silas Zhang (2026)
@@ -28,5 +28,5 @@ case "$wallpaper_engine" in
         ;;
 esac
 
-# 统一执行壁纸初始?
+# 统一执行壁纸初始化
 "$WALLPAPER_SCRIPT" init

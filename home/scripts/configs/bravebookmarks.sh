@@ -1,10 +1,10 @@
-﻿#!/run/current-system/sw/bin/bash
+#!/run/current-system/sw/bin/bash
 # -----------------------------------------------------
 # Brave Config
 # Author: Silas Zhang (2026)
 # -----------------------------------------------------
 
-# 读取 Brave 书签，提取所?url
+# 读取 Brave 书签，提取所有 url
 bookmark_file="$HOME/.config/BraveSoftware/Brave-Browser/Default/Bookmarks"
 
 # 筛选链接、去引号、通过 rofi 选择
