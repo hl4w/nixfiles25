@@ -126,8 +126,10 @@ The script will:
 2. Prompt for **hostname**
 3. Prompt for **Git user name** and **email**
 4. Display configuration summary and confirm before proceeding
-5. Auto-generate `flake.lock` with dependency lockfile
+5. Auto-generate `flake.lock` with dependency lockfile (includes `--extra-experimental-features` flag)
 6. Deploy system configuration with `nixos-rebuild switch`
+
+**Note:** The installation script automatically handles experimental Nix features (`nix-command` and `flakes`) by adding the necessary flags to `nix flake update`, so no manual configuration is required.
 
 ### Manual Installation
 

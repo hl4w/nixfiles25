@@ -30,6 +30,9 @@ Version 1.5.0
   - Add `force = true` to `xdg.configFile."fcitx5/conf/classicui.conf"` in `home/fcitx5/default.nix`
   - Add `force = true` to `xdg.configFile."gtk-4.0/gtk.css"` and `xdg.configFile."gtk-3.0/gtk.css"` in `home/gtkqt/default.nix`
   - Add `force = true` to `xdg.configFile."Kvantum/kvantum.kvconfig"` in `home/gtkqt/default.nix`
+- Fix install.sh/install-en.sh nix command execution:
+  - Add `--extra-experimental-features "nix-command flakes"` flag to `nix flake update`
+  - Solves "experimental Nix feature 'nix-command' is disabled" error
 
 ### Configuration
 - Enable non-free software installation:
