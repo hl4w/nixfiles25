@@ -111,7 +111,9 @@ in {
   # Fcitx5 主题配置
   # ============================================================================
   # 配置 Fcitx5 ClassicUI 主题和外观
-  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
+  xdg.configFile."fcitx5/conf/classicui.conf" = {
+    force = true;
+    text = ''
     # -------------------- 布局设置 --------------------
     # 垂直/水平候选词列表
     Vertical Candidate List=False
@@ -158,4 +160,5 @@ in {
     # 启用分数缩放
     EnableFractionalScale=True
   '';
+  };
 }

@@ -32,9 +32,16 @@
   # 启用 dconf
   dconf.enable = true;
 
- xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+  # 强制覆盖已存在的 GTK 配置文件
+  xdg.configFile."gtk-4.0/gtk.css".force = true;
+  xdg.configFile."gtk-3.0/gtk.css".force = true;
+
+  xdg.configFile."Kvantum/kvantum.kvconfig" = {
+     force = true;
+     text = ''
     [General]
     theme=Catppuccin-mocha
   '';
+  };
 
 }
