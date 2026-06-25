@@ -119,8 +119,15 @@ nixfiles/
 
 2. Clone this repository to your system:
 
+**China (Gitee):**
 ```bash
-git clone http://git.hl4w.com/hl4w/nixfiles25.git
+git clone https://gitee.com/hl4w/nixfiles25.git
+cd nixfiles25
+```
+
+**International (GitHub):**
+```bash
+git clone https://github.com/hl4w/nixfiles25.git
 cd nixfiles25
 ```
 
