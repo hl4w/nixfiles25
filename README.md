@@ -131,7 +131,9 @@ git clone https://github.com/hl4w/nixfiles25.git
 cd nixfiles25
 ```
 
-**Note:** This configuration uses Chinese mirror sources (Tsinghua and USTC) for faster package downloads in China. The mirrors are configured in `flake.nix` under `nixConfig.substituters`.
+**Note:** This configuration uses Chinese mirror sources (Tsinghua and USTC) for faster package downloads in China. The mirrors are configured:
+- `substituters`: In `flake.nix` under `nixConfig` (user-level suggestions)
+- `trusted-substituters`: In `hosts/default.nix` under `nix.settings` (system-level, required)
 
 ### Automated Installation (Recommended)
 

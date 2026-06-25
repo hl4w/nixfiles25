@@ -41,6 +41,10 @@ Version 1.5.0
   - Remove `nixpkgs.config.allowUnfree` from `home/core.nix` (conflicts with `useGlobalPkgs`)
   - Change `qt.platformTheme = "qtct"` to `qt.platformTheme.name = "qtct"` in `home/gtkqt/default.nix`
   - Eliminates `evaluation warning` messages during rebuild
+- Fix Nix substituter warnings:
+  - Move `trusted-substituters` from `flake.nix` to `hosts/default.nix` in `nix.settings`
+  - `trusted-substituters` is a restricted setting and must be defined at system level
+  - Eliminates "ignoring untrusted substituter" and "restricted setting" warnings
 
 ### Configuration
 - Enable non-free software installation:
