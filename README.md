@@ -207,9 +207,11 @@ After successful deployment:
 2. The system will use the configured Hyprland desktop environment
 3. Home Manager will manage user-specific configurations automatically
 
+**Note:** If you encounter "Existing file would be clobbered" errors during deployment, the configuration automatically backs up existing files with `.backup` extension.
+
 ### Non-Free Software
 
-This configuration enables installation of non-free (proprietary) software packages by default. Both system-level and user-level configurations include:
+This configuration enables installation of non-free (proprietary) software packages by default. The system-level configuration in `hosts/default.nix` includes:
 
 ```nix
 nixpkgs.config.allowUnfree = true;

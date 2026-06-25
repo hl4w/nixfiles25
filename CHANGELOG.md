@@ -37,11 +37,14 @@ Version 1.5.0
   - Add `home-manager.backupFileExtension = "backup"` in `flake.nix`
   - Automatically backs up existing config files (e.g., `settings.ini` → `settings.ini.backup`)
   - Resolves "Existing file would be clobbered" errors for all Home Manager managed files
+- Fix evaluation warnings:
+  - Remove `nixpkgs.config.allowUnfree` from `home/core.nix` (conflicts with `useGlobalPkgs`)
+  - Change `qt.platformTheme = "qtct"` to `qt.platformTheme.name = "qtct"` in `home/gtkqt/default.nix`
+  - Eliminates `evaluation warning` messages during rebuild
 
 ### Configuration
 - Enable non-free software installation:
   - Add `nixpkgs.config.allowUnfree = true` in hosts/default.nix (system level)
-  - Add `nixpkgs.config.allowUnfree = true` in home/core.nix (user level)
   - Allows installation of proprietary packages like Steam, NVIDIA drivers, etc.
 - Set default values for username/hostname in flake.nix:
   - Changed from placeholder `<your-username>` to `nixos`
